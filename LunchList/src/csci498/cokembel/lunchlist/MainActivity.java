@@ -1,5 +1,6 @@
-package csci498.cokembel.lunshlist;
+package csci498.cokembel.lunchlist;
 
+import csci498.cokembel.lunshlist.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
