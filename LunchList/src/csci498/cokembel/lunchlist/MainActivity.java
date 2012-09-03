@@ -28,6 +28,9 @@ public class MainActivity extends Activity {
 			EditText name = (EditText) findViewById(R.id.name);
 			EditText address = (EditText)findViewById(R.id.addr);
 			
+			r.setName(name.getText().toString());
+			r.setAddress(address.getText().toString());
+			
 		}
 	};
 
