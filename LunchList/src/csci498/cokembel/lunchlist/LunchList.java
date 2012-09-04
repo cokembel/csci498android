@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TableRow;
 
 
@@ -29,8 +30,9 @@ public class LunchList extends Activity {
     }
     
     private void initializeButtonGroup(){
+    	
         TableRow radioRow = (TableRow) findViewById(R.id.radioRow);
-
+     
         types = new RadioGroup(this);
         radioRow.addView(types);
         
@@ -44,9 +46,26 @@ public class LunchList extends Activity {
         delivery.setText("Delivery");
         delivery.setId(3);
         
+        RadioButton extra1 = new RadioButton(this);
+        RadioButton extra2 = new RadioButton(this);
+        RadioButton extra3 = new RadioButton(this);
+        RadioButton extra4 = new RadioButton(this);
+        RadioButton extra5 = new RadioButton(this);
+        RadioButton extra6 = new RadioButton(this);
+        RadioButton extra7 = new RadioButton(this);
+        RadioButton extra8 = new RadioButton(this);
+        
         types.addView(take_out);
         types.addView(sit_down);
         types.addView(delivery);
+        types.addView(extra1);
+        types.addView(extra2);
+        types.addView(extra3);
+        types.addView(extra4);
+        types.addView(extra5);
+        types.addView(extra6);
+        types.addView(extra7);
+        types.addView(extra8);
     }
     
     private View.OnClickListener onSave = new View.OnClickListener() {
