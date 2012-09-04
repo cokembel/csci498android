@@ -19,8 +19,9 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/linearLayout1"
             android:layout_alignTop="@+id/linearLayout1"
-            android:fontFamily="Droid Serif"
-            android:text="Name:" />
+            android:text="Name:"
+            android:textStyle="normal"
+            android:typeface="monospace" />
 
         <EditText
             android:id="@+id/editText1"
@@ -44,7 +45,8 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Address:" />
+            android:text="Address:"
+            android:typeface="monospace" />
 
         <EditText
             android:id="@+id/addr"
