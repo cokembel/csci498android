@@ -7,20 +7,46 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TableRow;
 
 
 public class LunchList extends Activity {
 	Restaurant r = new Restaurant();
+	RadioButton sit_down, take_out, delivery;
+	RadioGroup types;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        initializeButtonGroup();
         Button save = (Button) findViewById(R.id.save);
+      
+        save.setOnClickListener(onSave);    
+    }
+    
+    private void initializeButtonGroup(){
+        TableRow radioRow = (TableRow) findViewById(R.id.radioRow);
+
+        types = new RadioGroup(this);
+        radioRow.addView(types);
         
-        save.setOnClickListener(onSave);
+        take_out = new RadioButton(this);
+        take_out.setText("Take-Out");
+        take_out.setId(1);
+        sit_down = new RadioButton(this);
+        sit_down.setText("Sit_Down");
+        sit_down.setId(2);
+        delivery = new RadioButton(this);
+        delivery.setText("Delivery");
+        delivery.setId(3);
+        
+        types.addView(take_out);
+        types.addView(sit_down);
+        types.addView(delivery);
     }
     
     private View.OnClickListener onSave = new View.OnClickListener() {
@@ -31,17 +57,15 @@ public class LunchList extends Activity {
 			
 			r.setName(name.getText().toString());
 			r.setAddress(address.getText().toString());
-			
-			RadioGroup types = (RadioGroup) findViewById(R.id.types);
-			
+
 			switch (types.getCheckedRadioButtonId()){
-				case R.id.sit_down:
-					r.setType("sit_down");
-					break;
-				case R.id.take_out:
+				case 1:
 					r.setType("take_out");
 					break;
-				case R.id.delivery:
+				case 2:
+					r.setType("sit_down");
+					break;
+				case 3:
 					r.setType("delivery");
 					break;
 			}	
