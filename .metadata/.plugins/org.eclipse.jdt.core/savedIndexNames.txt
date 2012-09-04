@@ -1,0 +1,5 @@
+INDEX VERSION 1.126+C:\Users\Cole\git\csci498\.metadata\.plugins\org.eclipse.jdt.core
+543323344.index
+2208700080.index
+2707963024.index
+3752276751.index

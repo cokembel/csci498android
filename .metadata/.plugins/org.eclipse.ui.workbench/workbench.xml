@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="25" version="2.0">
+<workbench progressCount="39" version="2.0">
 <workbenchAdvisor/>
-<window height="768" width="1024" x="100" y="100">
+<window height="768" maximized="true" width="1024" x="287" y="157">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -29,10 +29,19 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
 </folder>
 </info>
 </editorArea>
+<editor id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" partName="csci498.cokembel.lunchlist.MainActivity Manifest" path="C:/Users/Cole/git/csci498/csci498.cokembel.lunchlist.MainActivity/AndroidManifest.xml" title="csci498.cokembel.lunchlist.MainActivity Manifest" tooltip="csci498.cokembel.lunchlist.MainActivity/AndroidManifest.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/csci498.cokembel.lunchlist.MainActivity/AndroidManifest.xml"/>
+</editor>
+<editor activePart="true" focus="true" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" partName="csci498.cokembel.lunchlist.MainActivity Manifest" path="C:/Users/Cole/git/csci498/csci498.cokembel.lunchlist.MainActivity/bin/AndroidManifest.xml" title="csci498.cokembel.lunchlist.MainActivity Manifest" tooltip="csci498.cokembel.lunchlist.MainActivity/bin/AndroidManifest.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/csci498.cokembel.lunchlist.MainActivity/bin/AndroidManifest.xml"/>
+</editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
@@ -195,7 +204,7 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.25" ratioLeft="250" ratioRight="750" relationship="2" relative="left"/>
+<info part="org.eclipse.ui.editorss" ratio="0.40623128" ratioLeft="678" ratioRight="991" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.7496136" ratioLeft="485" ratioRight="162" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
@@ -236,7 +245,16 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/csci498.cokembel.lunchlist.MainActivity/AndroidManifest.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/csci498.cokembel.lunchlist.MainActivity/bin/AndroidManifest.xml"/>
+</editors>
+<item historyLabel="csci498.cokembel.lunchlist.MainActivity Manifest" index="0"/>
+<item active="true" historyLabel="csci498.cokembel.lunchlist.MainActivity Manifest" index="1">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+</navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -253,5 +271,18 @@
 </trimArea>
 </trimLayout>
 </window>
-<mruList/>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="ic_launcher.png" tooltip="csci498.cokembel.lunchlist.MainActivity/res/drawable/ic_launcher.png">
+<persistable path="/csci498.cokembel.lunchlist.MainActivity/res/drawable/ic_launcher.png"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="ic_launcher-web.png" tooltip="csci498.cokembel.lunchlist.MainActivity/ic_launcher-web.png">
+<persistable path="/csci498.cokembel.lunchlist.MainActivity/ic_launcher-web.png"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="csci498.cokembel.lunchlist.MainActivity/bin/AndroidManifest.xml">
+<persistable path="/csci498.cokembel.lunchlist.MainActivity/bin/AndroidManifest.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="csci498.cokembel.lunchlist.MainActivity/AndroidManifest.xml">
+<persistable path="/csci498.cokembel.lunchlist.MainActivity/AndroidManifest.xml"/>
+</file>
+</mruList>
 </workbench>

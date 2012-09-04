@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 
-public class MainActivity extends Activity {
+public class LunchList extends Activity {
 	Restaurant r = new Restaurant();
 
     @Override

@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/linearLayout1"
             android:layout_alignTop="@+id/linearLayout1"
+            android:fontFamily="Droid Serif"
             android:text="Name:" />
 
         <EditText
