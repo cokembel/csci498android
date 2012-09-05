@@ -6,19 +6,11 @@ import java.util.List;
 import csci498.cokembel.lunshlist.R;
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.ScrollView;
-import android.widget.Spinner;
-import android.widget.TableRow;
 import android.widget.*;
 
 
@@ -109,16 +101,22 @@ public class LunchList extends Activity {
     		name = (TextView)row.findViewById(R.id.title);
     		address =(TextView)row.findViewById(R.id.address);
     		icon = (ImageView)row.findViewById(R.id.icon);
-    		}
-    		void populateFrom(Restaurant r) {
+    	}
+    	
+		void populateFrom(Restaurant r) {
+			
     		name.setText(r.getName());
     		address.setText(r.getAddress());
+    		
     		if (r.getType().equals("sit_down")) {
     			icon.setImageResource(R.drawable.ball_red);
+    			name.setTextColor(Color.RED);
 			}else if (r.getType().equals("take_out")) {
 				icon.setImageResource(R.drawable.ball_yellow);
+				name.setTextColor(Color.YELLOW);
 			}else {
 				icon.setImageResource(R.drawable.ball_green);
+				name.setTextColor(Color.GREEN);
 			}
 		}
     }
