@@ -19,9 +19,11 @@ public class LunchList extends Activity {
 	RestaurantAdapter adapter = null;
 	RadioButton sit_down, take_out, delivery;
 	RadioGroup types;
+	public static RestaurantType currentRestaurantType;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+    	setTitle("LunchList");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
@@ -62,7 +64,14 @@ public class LunchList extends Activity {
 		}
 	};
 	
+	public enum RestaurantType {
+			SIT_DOWN,
+			TAKE_OUT,
+			DELIVERY;
+	}
+	
    public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
+	   	
     	RestaurantAdapter() {
     		
     		super(LunchList.this,android.R.layout.simple_list_item_1,
@@ -89,13 +98,19 @@ public class LunchList extends Activity {
     		return(row);
     	}
     	
-    	public View getItemViewType(){
-    	
-			return delivery;
+    	@Override
+    	public int getItemViewType(int position){
+    		if(currentRestaurantType == RestaurantType.SIT_DOWN) {
+    			return 1;
+    		}else if(currentRestaurantType == RestaurantType.TAKE_OUT) {
+    			return 2;
+    		}
+    		return 3;
     	}
     	
+    	@Override
     	public int getViewTypeCount(){
-			return 0;
+			return 3;
     		
     	}
    }
@@ -121,12 +136,15 @@ public class LunchList extends Activity {
     		if (r.getType().equals("sit_down")) {
     			icon.setImageResource(R.drawable.ball_red);
     			name.setTextColor(Color.RED);
+    			currentRestaurantType = RestaurantType.SIT_DOWN;
 			}else if (r.getType().equals("take_out")) {
 				icon.setImageResource(R.drawable.ball_yellow);
 				name.setTextColor(Color.YELLOW);
+				currentRestaurantType = RestaurantType.TAKE_OUT;
 			}else {
 				icon.setImageResource(R.drawable.ball_green);
 				name.setTextColor(Color.GREEN);
+				currentRestaurantType = RestaurantType.DELIVERY;
 			}
 		}
     }
