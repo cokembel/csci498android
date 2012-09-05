@@ -6,8 +6,10 @@ import java.util.List;
 import csci498.cokembel.lunshlist.R;
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TableRow;
+import android.widget.*;
 
 
 public class LunchList extends Activity {
@@ -58,6 +61,9 @@ public class LunchList extends Activity {
         delivery = new RadioButton(this);
         delivery.setText("Delivery");
         delivery.setId(3);
+        
+        // Extra radio buttons for extra credit ( not used in later tutorials )
+   
         /*
         RadioButton extra1 = new RadioButton(this);
         RadioButton extra2 = new RadioButton(this);
@@ -118,6 +124,32 @@ public class LunchList extends Activity {
     	RestaurantAdapter(){
     		super(LunchList.this,android.R.layout.simple_list_item_1,
     		model);
+    	}
+    	
+    	public View getView(int position, View convertView, ViewGroup parent) {
+    		View row = convertView;
+    		if(row == null){
+    			LayoutInflater inflater = getLayoutInflater();
+    			
+    			row = inflater.inflate(R.layout.row, null);
+    		}
+    		
+    		Restaurant r = model.get(position);
+    		
+    		((TextView)row.findViewById(R.id.title)).setText(r.getName());
+    		
+    		((TextView)row.findViewById(R.id.address)).setText(r.getAddress());
+    		
+    		ImageView icon = (ImageView)row.findViewById(R.id.icon);
+    		
+    		if (r.getType().equals("sit_down")) {
+    			icon.setImageResource(R.drawable.ball_red);
+			}else if (r.getType().equals("take_out")) {
+				icon.setImageResource(R.drawable.ball_yellow);
+			}else {
+				icon.setImageResource(R.drawable.ball_green);
+			}
+    		return(row);
     	}
     }
 }
