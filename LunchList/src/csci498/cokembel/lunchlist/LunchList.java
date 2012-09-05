@@ -32,7 +32,7 @@ public class LunchList extends Activity {
       
         save.setOnClickListener(onSave);
         
-        Spinner restaurantList = (Spinner)findViewById(R.id.restaurants);
+        ListView restaurantList = (ListView)findViewById(R.id.restaurants);
         adapter = new RestaurantAdapter();
         
         restaurantList.setAdapter(adapter);
