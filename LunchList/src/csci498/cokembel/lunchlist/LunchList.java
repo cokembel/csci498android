@@ -36,58 +36,15 @@ public class LunchList extends Activity {
         initializeButtonGroup();
         Button save = (Button) findViewById(R.id.save);
       
-        save.setOnClickListener(onSave);  
-       Spinner restaurantList = (Spinner)findViewById(R.id.restaurants);
-      
+        save.setOnClickListener(onSave);
+        
+        Spinner restaurantList = (Spinner)findViewById(R.id.restaurants);
         adapter = new RestaurantAdapter();
         
         restaurantList.setAdapter(adapter);
         		
     }
-    
-    private void initializeButtonGroup() {
-    
-        TableRow radioRow = (TableRow) findViewById(R.id.radioRow);
      
-        types = new RadioGroup(this);
-        radioRow.addView(types);
-        
-        take_out = new RadioButton(this);
-        take_out.setText("Take-Out");
-        take_out.setId(1);
-        sit_down = new RadioButton(this);
-        sit_down.setText("Sit_Down");
-        sit_down.setId(2);
-        delivery = new RadioButton(this);
-        delivery.setText("Delivery");
-        delivery.setId(3);
-        
-        // Extra radio buttons for extra credit ( not used in later tutorials )
-   
-        /*
-        RadioButton extra1 = new RadioButton(this);
-        RadioButton extra2 = new RadioButton(this);
-        RadioButton extra3 = new RadioButton(this);
-        RadioButton extra4 = new RadioButton(this);
-        RadioButton extra5 = new RadioButton(this);
-        RadioButton extra6 = new RadioButton(this);
-        RadioButton extra7 = new RadioButton(this);
-        RadioButton extra8 = new RadioButton(this);
-        */
-        types.addView(take_out);
-        types.addView(sit_down);
-        types.addView(delivery);/*
-        
-        types.addView(extra1);
-        types.addView(extra2);
-        types.addView(extra3);
-        types.addView(extra4);
-        types.addView(extra5);
-        types.addView(extra6);
-        types.addView(extra7);
-        types.addView(extra8);*/  
-    }
-    
     private View.OnClickListener onSave = new View.OnClickListener() {
 		
 		public void onClick(View v) {
@@ -112,15 +69,10 @@ public class LunchList extends Activity {
 			adapter.add(r);
 		}
 	};
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
-    
-    public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
-    	RestaurantAdapter(){
+	
+   public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
+    	RestaurantAdapter() {
+    		
     		super(LunchList.this,android.R.layout.simple_list_item_1,
     		model);
     	}
@@ -143,25 +95,9 @@ public class LunchList extends Activity {
     		holder.populateFrom(model.get(position));
     		
     		return(row);
-    		/*
-    		Restaurant r = model.get(position);
-    		
-    		((TextView)row.findViewById(R.id.title)).setText(r.getName());
-    		((TextView)row.findViewById(R.id.address)).setText(r.getAddress());
-    		
-    		ImageView icon = (ImageView)row.findViewById(R.id.icon);
-    		
-    		if (r.getType().equals("sit_down")) {
-    			icon.setImageResource(R.drawable.ball_red);
-			}else if (r.getType().equals("take_out")) {
-				icon.setImageResource(R.drawable.ball_yellow);
-			}else {
-				icon.setImageResource(R.drawable.ball_green);
-			}
-    		return(row);*/
     	}
     }
-    
+	    
     static class RestaurantHolder {
     	
     	private TextView name = null;
@@ -179,13 +115,63 @@ public class LunchList extends Activity {
     		address.setText(r.getAddress());
     		if (r.getType().equals("sit_down")) {
     			icon.setImageResource(R.drawable.ball_red);
-			}
-			else if (r.getType().equals("take_out")) {
+			}else if (r.getType().equals("take_out")) {
 				icon.setImageResource(R.drawable.ball_yellow);
-			}
-			else {
+			}else {
 				icon.setImageResource(R.drawable.ball_green);
 			}
 		}
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
+    }
+    
+   
+    
+    private void initializeButtonGroup() {
+        
+        TableRow radioRow = (TableRow) findViewById(R.id.radioRow);
+     
+        types = new RadioGroup(this);
+        radioRow.addView(types);
+        
+        take_out = new RadioButton(this);
+        take_out.setText("Take-Out");
+        take_out.setId(1);
+        sit_down = new RadioButton(this);
+        sit_down.setText("Sit_Down");
+        sit_down.setId(2);
+        delivery = new RadioButton(this);
+        delivery.setText("Delivery");
+        delivery.setId(3);
+        
+        // Extra radio buttons for extra credit for tutorial 3 ( not used in later tutorials )
+        // same with scrollView that was previously used
+        /*
+        RadioButton extra1 = new RadioButton(this);
+        RadioButton extra2 = new RadioButton(this);
+        RadioButton extra3 = new RadioButton(this);
+        RadioButton extra4 = new RadioButton(this);
+        RadioButton extra5 = new RadioButton(this);
+        RadioButton extra6 = new RadioButton(this);
+        RadioButton extra7 = new RadioButton(this);
+        RadioButton extra8 = new RadioButton(this);
+        */
+        types.addView(take_out);
+        types.addView(sit_down);
+        types.addView(delivery);/*
+        
+        types.addView(extra1);
+        types.addView(extra2);
+        types.addView(extra3);
+        types.addView(extra4);
+        types.addView(extra5);
+        types.addView(extra6);
+        types.addView(extra7);
+        types.addView(extra8);*/  
     }
 }
