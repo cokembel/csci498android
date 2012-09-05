@@ -88,7 +88,17 @@ public class LunchList extends Activity {
     		
     		return(row);
     	}
-    }
+    	
+    	public View getItemViewType(){
+    	
+			return delivery;
+    	}
+    	
+    	public int getViewTypeCount(){
+			return 0;
+    		
+    	}
+   }
 	    
     static class RestaurantHolder {
     	
