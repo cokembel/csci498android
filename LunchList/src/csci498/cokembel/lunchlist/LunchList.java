@@ -1,5 +1,8 @@
 package csci498.cokembel.lunchlist;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import csci498.cokembel.lunshlist.R;
 import android.os.Bundle;
 import android.app.Activity;
@@ -14,7 +17,7 @@ import android.widget.TableRow;
 
 
 public class LunchList extends Activity {
-	Restaurant r = new Restaurant();
+	List<Restaurant> model = new ArrayList<Restaurant>();
 	RadioButton sit_down, take_out, delivery;
 	RadioGroup types;
 
@@ -30,7 +33,7 @@ public class LunchList extends Activity {
     }
     
     private void initializeButtonGroup(){
-    	
+    
         TableRow radioRow = (TableRow) findViewById(R.id.radioRow);
      
         types = new RadioGroup(this);
@@ -71,6 +74,7 @@ public class LunchList extends Activity {
     private View.OnClickListener onSave = new View.OnClickListener() {
 		
 		public void onClick(View v) {
+			Restaurant r = new Restaurant();
 			EditText name = (EditText) findViewById(R.id.name);
 			EditText address = (EditText)findViewById(R.id.addr);
 			
