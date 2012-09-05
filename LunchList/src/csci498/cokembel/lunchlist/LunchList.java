@@ -34,7 +34,7 @@ public class LunchList extends Activity {
       
         save.setOnClickListener(onSave);  
         
-        ListView restaurantList = (ListView)findViewById(R.id.restaurants);
+       ListView restaurantList = (ListView)findViewById(R.id.restaurants);
         
         adapter = new ArrayAdapter<Restaurant>(this,
         		android.R.layout.simple_list_item_1,
@@ -59,7 +59,7 @@ public class LunchList extends Activity {
         delivery = new RadioButton(this);
         delivery.setText("Delivery");
         delivery.setId(3);
-        
+        /*
         RadioButton extra1 = new RadioButton(this);
         RadioButton extra2 = new RadioButton(this);
         RadioButton extra3 = new RadioButton(this);
@@ -68,10 +68,11 @@ public class LunchList extends Activity {
         RadioButton extra6 = new RadioButton(this);
         RadioButton extra7 = new RadioButton(this);
         RadioButton extra8 = new RadioButton(this);
-        
+        */
         types.addView(take_out);
         types.addView(sit_down);
-        types.addView(delivery);
+        types.addView(delivery);/*
+        
         types.addView(extra1);
         types.addView(extra2);
         types.addView(extra3);
@@ -79,7 +80,8 @@ public class LunchList extends Activity {
         types.addView(extra5);
         types.addView(extra6);
         types.addView(extra7);
-        types.addView(extra8);
+        types.addView(extra8);*/
+        
     }
     
     private View.OnClickListener onSave = new View.OnClickListener() {
