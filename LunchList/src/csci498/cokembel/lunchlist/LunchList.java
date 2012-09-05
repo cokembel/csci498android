@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TableRow;
 
 
@@ -33,12 +34,12 @@ public class LunchList extends Activity {
         Button save = (Button) findViewById(R.id.save);
       
         save.setOnClickListener(onSave);  
-        
-       ListView restaurantList = (ListView)findViewById(R.id.restaurants);
-        
+       Spinner restaurantList = (Spinner)findViewById(R.id.restaurants);
+      
         adapter = new ArrayAdapter<Restaurant>(this,
         		android.R.layout.simple_list_item_1,
         		model);
+        
         restaurantList.setAdapter(adapter);
         		
     }
