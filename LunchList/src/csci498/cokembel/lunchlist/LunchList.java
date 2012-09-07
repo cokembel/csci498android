@@ -21,6 +21,11 @@ public class LunchList extends TabActivity {
 	RadioButton sit_down, take_out, delivery;
 	RadioGroup types;
 	public static RestaurantType currentRestaurantType;
+	
+	 private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener(){
+    	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+    	}
+	};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +47,7 @@ public class LunchList extends TabActivity {
         
         spec.setContent(R.id.restaurants);
         spec.setIndicator("List", getResources().getDrawable(R.drawable.list));
-        
+
         getTabHost().addTab(spec);
         
         spec=getTabHost().newTabSpec("tag2");
@@ -51,6 +56,8 @@ public class LunchList extends TabActivity {
         
         getTabHost().addTab(spec);
         getTabHost().setCurrentTab(0);
+        
+        restaurantList.setOnItemClickListener(onListClick);
         		
     }
      
