@@ -38,6 +38,7 @@ public class LunchList extends TabActivity {
     		}else {
     			typesRadioGroup.check(R.id.delivery);
     		}
+    		getTabHost().setCurrentTab(1);
     	}
 	};
 
