@@ -12,9 +12,10 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import android.app.TabActivity;
 
 
-public class LunchList extends Activity {
+public class LunchList extends TabActivity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
 	RestaurantAdapter adapter = null;
 	RadioButton sit_down, take_out, delivery;
@@ -36,6 +37,20 @@ public class LunchList extends Activity {
         adapter = new RestaurantAdapter();
         
         restaurantList.setAdapter(adapter);
+        
+        TabHost.TabSpec spec=getTabHost().newTabSpec("tag1");
+        
+        spec.setContent(R.id.restaurants);
+        spec.setIndicator("List", getResources().getDrawable(R.drawable.list));
+        
+        getTabHost().addTab(spec);
+        
+        spec=getTabHost().newTabSpec("tag2");
+        spec.setContent(R.id.details);
+        spec.setIndicator("Details", getResources().getDrawable(R.drawable.restaurant));
+        
+        getTabHost().addTab(spec);
+        getTabHost().setCurrentTab(0);
         		
     }
      
