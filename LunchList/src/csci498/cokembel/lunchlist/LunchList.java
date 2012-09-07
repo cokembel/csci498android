@@ -73,7 +73,7 @@ public class LunchList extends Activity {
    public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 	   	
     	RestaurantAdapter() {
-    		
+    	
     		super(LunchList.this,android.R.layout.simple_list_item_1,
     		model);
     	}
@@ -129,7 +129,6 @@ public class LunchList extends Activity {
     	}
     	
 		void populateFrom(Restaurant r) {
-			
     		name.setText(r.getName());
     		address.setText(r.getAddress());
     		
@@ -151,7 +150,6 @@ public class LunchList extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-    	
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
@@ -159,7 +157,6 @@ public class LunchList extends Activity {
    
     
     private void initializeButtonGroup() {
-        
         TableRow radioRow = (TableRow) findViewById(R.id.radioRow);
      
         types = new RadioGroup(this);
@@ -175,29 +172,9 @@ public class LunchList extends Activity {
         delivery.setText("Delivery");
         delivery.setId(3);
         
-        // Extra radio buttons for extra credit for tutorial 3 ( not used in later tutorials )
-        // same with scrollView that was previously used
-        /*
-        RadioButton extra1 = new RadioButton(this);
-        RadioButton extra2 = new RadioButton(this);
-        RadioButton extra3 = new RadioButton(this);
-        RadioButton extra4 = new RadioButton(this);
-        RadioButton extra5 = new RadioButton(this);
-        RadioButton extra6 = new RadioButton(this);
-        RadioButton extra7 = new RadioButton(this);
-        RadioButton extra8 = new RadioButton(this);
-        */
         types.addView(take_out);
         types.addView(sit_down);
-        types.addView(delivery);/*
-        
-        types.addView(extra1);
-        types.addView(extra2);
-        types.addView(extra3);
-        types.addView(extra4);
-        types.addView(extra5);
-        types.addView(extra6);
-        types.addView(extra7);
-        types.addView(extra8);*/  
+        types.addView(delivery);
+
     }
 }
