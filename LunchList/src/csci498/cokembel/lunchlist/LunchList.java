@@ -19,11 +19,25 @@ public class LunchList extends TabActivity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
 	RestaurantAdapter adapter = null;
 	RadioButton sit_down, take_out, delivery;
-	RadioGroup types;
+
+	EditText name = null;
+	EditText address = null;
+	RadioGroup typesRadioGroup;
+	
 	public static RestaurantType currentRestaurantType;
 	
 	 private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener(){
     	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+    		Restaurant r=model.get(position);
+    		name.setText(r.getName());
+    		address.setText(r.getAddress());
+    		if (r.getType().equals("sit_down")) {
+    			typesRadioGroup.check(R.id.sit_down);
+    		}else if (r.getType().equals("take_out")) {
+    			typesRadioGroup.check(R.id.take_out);
+    		}else {
+    			typesRadioGroup.check(R.id.delivery);
+    		}
     	}
 	};
 
@@ -33,7 +47,9 @@ public class LunchList extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        initializeButtonGroup();
+        name=(EditText)findViewById(R.id.name);
+        address=(EditText)findViewById(R.id.addr);
+         
         Button save = (Button) findViewById(R.id.save);
       
         save.setOnClickListener(onSave);
@@ -71,7 +87,7 @@ public class LunchList extends TabActivity {
 			r.setName(name.getText().toString());
 			r.setAddress(address.getText().toString());
 
-			switch (types.getCheckedRadioButtonId()){
+			switch (typesRadioGroup.getCheckedRadioButtonId()){
 				case 1:
 					r.setType("take_out");
 					break;
@@ -176,27 +192,4 @@ public class LunchList extends TabActivity {
         return true;
     }
     
-   
-    
-    private void initializeButtonGroup() {
-        TableRow radioRow = (TableRow) findViewById(R.id.radioRow);
-     
-        types = new RadioGroup(this);
-        radioRow.addView(types);
-        
-        take_out = new RadioButton(this);
-        take_out.setText("Take-Out");
-        take_out.setId(1);
-        sit_down = new RadioButton(this);
-        sit_down.setText("Sit_Down");
-        sit_down.setId(2);
-        delivery = new RadioButton(this);
-        delivery.setText("Delivery");
-        delivery.setId(3);
-        
-        types.addView(take_out);
-        types.addView(sit_down);
-        types.addView(delivery);
-
-    }
 }
