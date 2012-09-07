@@ -46,9 +46,11 @@ public class LunchList extends TabActivity {
     	setTitle("LunchList");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+      
         
         name=(EditText)findViewById(R.id.name);
         address=(EditText)findViewById(R.id.addr);
+        typesRadioGroup = (RadioGroup)findViewById(R.id.types);
          
         Button save = (Button) findViewById(R.id.save);
       
@@ -88,13 +90,13 @@ public class LunchList extends TabActivity {
 			r.setAddress(address.getText().toString());
 
 			switch (typesRadioGroup.getCheckedRadioButtonId()){
-				case 1:
+				case R.id.take_out:
 					r.setType("take_out");
 					break;
-				case 2:
+				case R.id.sit_down:
 					r.setType("sit_down");
 					break;
-				case 3:
+				case R.id.delivery:
 					r.setType("delivery");
 					break;
 			}	
