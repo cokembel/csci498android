@@ -53,11 +53,6 @@
 						/>
 					</RadioGroup>
 				</TableRow>	
-				<TableRow>
-				    <TextView android:text="Date:"/>
-				    <DatePicker android:id="@+id/date"
-				        android:calendarViewShown = "false"/>
-				</TableRow>
 			    <Button android:id="@+id/save"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
