@@ -35,6 +35,10 @@ public class Restaurant {
 		this.type = type;
 	}
 	
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+	
 	public String toString(){
 		return(getName());
 	}

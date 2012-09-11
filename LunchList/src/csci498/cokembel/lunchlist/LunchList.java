@@ -22,6 +22,7 @@ public class LunchList extends TabActivity {
 
 	EditText name = null;
 	EditText address = null;
+	EditText notes = null;
 	RadioGroup typesRadioGroup;
 	
 	public static RestaurantType currentRestaurantType;
@@ -31,6 +32,7 @@ public class LunchList extends TabActivity {
     		Restaurant r=model.get(position);
     		name.setText(r.getName());
     		address.setText(r.getAddress());
+    		notes.setText(r.getNotes());
     		if (r.getType().equals("sit_down")) {
     			typesRadioGroup.check(R.id.sit_down);
     		}else if (r.getType().equals("take_out")) {
@@ -49,9 +51,10 @@ public class LunchList extends TabActivity {
         setContentView(R.layout.activity_main);
       
         
-        name=(EditText)findViewById(R.id.name);
-        address=(EditText)findViewById(R.id.addr);
+        name = (EditText)findViewById(R.id.name);
+        address = (EditText)findViewById(R.id.addr);
         typesRadioGroup = (RadioGroup)findViewById(R.id.types);
+        notes = (EditText)findViewById(R.id.notes);
          
         Button save = (Button) findViewById(R.id.save);
       
@@ -89,6 +92,7 @@ public class LunchList extends TabActivity {
 			
 			r.setName(name.getText().toString());
 			r.setAddress(address.getText().toString());
+			r.setNotes(notes.getText().toString());
 
 			switch (typesRadioGroup.getCheckedRadioButtonId()){
 				case R.id.take_out:

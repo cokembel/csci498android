@@ -5,7 +5,6 @@
 	android:id="@android:id/tabhost"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
-	
 	<LinearLayout
 		android:orientation="vertical"
 		android:layout_width="match_parent"
@@ -21,7 +20,6 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 			/>
-			
 		    <TableLayout android:id="@+id/details"
 			    android:layout_width="match_parent"
 			    android:layout_height="wrap_content"
@@ -53,6 +51,17 @@
 						/>
 					</RadioGroup>
 				</TableRow>	
+				<TableRow> 
+					<TextView android:text="Notes:" />
+					<EditText android:id="@+id/notes"
+					    android:singleLine="false"
+					    android:gravity="top"
+					    android:lines="2"
+					    android:scrollHorizontally="false"
+					    android:maxLines="2"
+					    android:maxWidth="200sp"
+					 />    
+				</TableRow>
 			    <Button android:id="@+id/save"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
