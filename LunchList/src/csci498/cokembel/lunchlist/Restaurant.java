@@ -5,7 +5,7 @@ public class Restaurant {
 	private String name="";
 	private String address="";
 	private String type="";
-	private String date="";
+	private String notes="";
 	
 	public String getName() {
 		return(name);
@@ -25,6 +25,10 @@ public class Restaurant {
 	
 	public String getType() {
 		return(type);
+	}
+	
+	public String getNotes() {
+		return(notes);
 	}
 	
 	public void setType(String type) {
