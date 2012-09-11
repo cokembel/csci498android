@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -19,8 +20,9 @@ import android.app.TabActivity;
 public class LunchList extends TabActivity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
 	RestaurantAdapter adapter = null;
+	Restaurant current =  null;
+	
 	RadioButton sit_down, take_out, delivery;
-
 	EditText name = null;
 	EditText address = null;
 	EditText notes = null;
@@ -30,13 +32,13 @@ public class LunchList extends TabActivity {
 	
 	 private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener(){
     	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-    		Restaurant r=model.get(position);
-    		name.setText(r.getName());
-    		address.setText(r.getAddress());
-    		notes.setText(r.getNotes());
-    		if (r.getType().equals("sit_down")) {
+    		current=model.get(position);
+    		name.setText(current.getName());
+    		address.setText(current.getAddress());
+    		notes.setText(current.getNotes());
+    		if (current.getType().equals("sit_down")) {
     			typesRadioGroup.check(R.id.sit_down);
-    		}else if (r.getType().equals("take_out")) {
+    		}else if (current.getType().equals("take_out")) {
     			typesRadioGroup.check(R.id.take_out);
     		}else {
     			typesRadioGroup.check(R.id.delivery);
@@ -87,28 +89,43 @@ public class LunchList extends TabActivity {
     private View.OnClickListener onSave = new View.OnClickListener() {
 		
 		public void onClick(View v) {
-			Restaurant r = new Restaurant();
+			current = new Restaurant();
 			EditText name = (EditText) findViewById(R.id.name);
 			EditText address = (EditText)findViewById(R.id.addr);
 			
-			r.setName(name.getText().toString());
-			r.setAddress(address.getText().toString());
-			r.setNotes(notes.getText().toString());
+			current.setName(name.getText().toString());
+			current.setAddress(address.getText().toString());
+			current.setNotes(notes.getText().toString());
 
 			switch (typesRadioGroup.getCheckedRadioButtonId()){
 				case R.id.take_out:
-					r.setType("take_out");
+					current.setType("take_out");
 					break;
 				case R.id.sit_down:
-					r.setType("sit_down");
+					current.setType("sit_down");
 					break;
 				case R.id.delivery:
-					r.setType("delivery");
+					current.setType("delivery");
 					break;
 			}	
-			adapter.add(r);
+			adapter.add(current);
 		}
 	};
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.toast) {
+			String message = "No restaurant selected";
+			
+			if (current != null) {
+				message = current.getNotes();
+			}
+			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+			return true;
+		}
+		
+		return super.onOptionsItemSelected(item);
+	}
 	
 	public enum RestaurantType {
 			SIT_DOWN,
