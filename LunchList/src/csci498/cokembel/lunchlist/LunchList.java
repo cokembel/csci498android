@@ -131,10 +131,6 @@ public class LunchList extends TabActivity {
         		
     }
     
-	private void doSomeLongWork(final int incr) {
-		SystemClock.sleep(250);
-	}
-	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.toast) {
@@ -143,15 +139,19 @@ public class LunchList extends TabActivity {
 			if (current != null) {
 				message = current.getNotes();
 			}
-			
 			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 			return true;
 			
 		}else if (item.getItemId() == R.id.run) {
+			setProgressBarVisibility(true);
+			progress = 0;
 			new Thread(longTask).start();
 		}
-		
 		return super.onOptionsItemSelected(item);
+	}
+	
+	private void doSomeLongWork(final int incr) {
+		SystemClock.sleep(250);
 	}
 	
     public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
