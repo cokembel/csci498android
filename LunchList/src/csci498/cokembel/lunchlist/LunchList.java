@@ -40,7 +40,7 @@ public class LunchList extends TabActivity {
 		DELIVERY;
 	}
 	
-	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener(){
+	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
     	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
     		current=model.get(position);
     		name.setText(current.getName());
@@ -82,7 +82,7 @@ public class LunchList extends TabActivity {
 			current.setAddress(address.getText().toString());
 			current.setNotes(notes.getText().toString());
 
-			switch (typesRadioGroup.getCheckedRadioButtonId()){
+			switch (typesRadioGroup.getCheckedRadioButtonId()) {
 				case R.id.take_out:
 					current.setType("take_out");
 					break;
@@ -133,8 +133,7 @@ public class LunchList extends TabActivity {
         getTabHost().addTab(spec);
         getTabHost().setCurrentTab(0);
         
-        restaurantList.setOnItemClickListener(onListClick);
-        		
+        restaurantList.setOnItemClickListener(onListClick); 		
     }
     
 	@Override
@@ -170,7 +169,6 @@ public class LunchList extends TabActivity {
     public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 	   	
     	RestaurantAdapter() {
-    	
     		super(LunchList.this,android.R.layout.simple_list_item_1,
     		model);
     	}
@@ -196,7 +194,7 @@ public class LunchList extends TabActivity {
     	}
     	
     	@Override
-    	public int getItemViewType(int position){
+    	public int getItemViewType(int position) {
     		if(currentRestaurantType == RestaurantType.SIT_DOWN) {
     			return 1;
     		}else if(currentRestaurantType == RestaurantType.TAKE_OUT) {
@@ -206,7 +204,7 @@ public class LunchList extends TabActivity {
     	}
     	
     	@Override
-    	public int getViewTypeCount(){
+    	public int getViewTypeCount() {
 			return 3;
     	}
    }
