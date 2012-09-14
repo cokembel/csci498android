@@ -20,9 +20,11 @@ import android.app.TabActivity;
 
 
 public class LunchList extends TabActivity {
+	
 	List<Restaurant> model = new ArrayList<Restaurant>();
 	RestaurantAdapter adapter = null;
 	Restaurant current =  null;
+	public static RestaurantType currentRestaurantType;
 	
 	RadioButton sit_down, take_out, delivery;
 	EditText name = null;
@@ -32,9 +34,13 @@ public class LunchList extends TabActivity {
 	
 	int progress;
 	
-	public static RestaurantType currentRestaurantType;
+	public enum RestaurantType {
+		SIT_DOWN,
+		TAKE_OUT,
+		DELIVERY;
+	}
 	
-	 private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener(){
+	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener(){
     	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
     		current=model.get(position);
     		name.setText(current.getName());
@@ -49,6 +55,40 @@ public class LunchList extends TabActivity {
     		}
     		getTabHost().setCurrentTab(1);
     	}
+	};
+	
+	private Runnable longTask = new Runnable() {
+		public void run() {
+			for(int i=0; i<20; i++) {
+				doSomeLongWork(500);
+			}
+		}
+	};
+	
+	 private View.OnClickListener onSave = new View.OnClickListener() {
+			
+		public void onClick(View v) {
+			current = new Restaurant();
+			EditText name = (EditText) findViewById(R.id.name);
+			EditText address = (EditText)findViewById(R.id.addr);
+			
+			current.setName(name.getText().toString());
+			current.setAddress(address.getText().toString());
+			current.setNotes(notes.getText().toString());
+
+			switch (typesRadioGroup.getCheckedRadioButtonId()){
+				case R.id.take_out:
+					current.setType("take_out");
+					break;
+				case R.id.sit_down:
+					current.setType("sit_down");
+					break;
+				case R.id.delivery:
+					current.setType("delivery");
+					break;
+			}	
+			adapter.add(current);
+		}
 	};
 
     @Override
@@ -90,41 +130,7 @@ public class LunchList extends TabActivity {
         restaurantList.setOnItemClickListener(onListClick);
         		
     }
-     
-    private View.OnClickListener onSave = new View.OnClickListener() {
-		
-		public void onClick(View v) {
-			current = new Restaurant();
-			EditText name = (EditText) findViewById(R.id.name);
-			EditText address = (EditText)findViewById(R.id.addr);
-			
-			current.setName(name.getText().toString());
-			current.setAddress(address.getText().toString());
-			current.setNotes(notes.getText().toString());
-
-			switch (typesRadioGroup.getCheckedRadioButtonId()){
-				case R.id.take_out:
-					current.setType("take_out");
-					break;
-				case R.id.sit_down:
-					current.setType("sit_down");
-					break;
-				case R.id.delivery:
-					current.setType("delivery");
-					break;
-			}	
-			adapter.add(current);
-		}
-	};
-	
-	private Runnable longTask = new Runnable() {
-		public void run() {
-			for(int i=0; i<20; i++) {
-				doSomeLongWork(500);
-			}
-		}
-	};
-	
+    
 	private void doSomeLongWork(final int incr) {
 		SystemClock.sleep(250);
 	}
@@ -137,22 +143,18 @@ public class LunchList extends TabActivity {
 			if (current != null) {
 				message = current.getNotes();
 			}
+			
 			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 			return true;
-		}else if (item.getItemId() == R.id.run){
+			
+		}else if (item.getItemId() == R.id.run) {
 			new Thread(longTask).start();
 		}
 		
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public enum RestaurantType {
-			SIT_DOWN,
-			TAKE_OUT,
-			DELIVERY;
-	}
-	
-   public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
+    public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 	   	
     	RestaurantAdapter() {
     	
@@ -193,8 +195,13 @@ public class LunchList extends TabActivity {
     	@Override
     	public int getViewTypeCount(){
 			return 3;
-    		
     	}
+   }
+   
+   @Override
+   public boolean onCreateOptionsMenu(Menu menu) {
+       getMenuInflater().inflate(R.menu.options, menu);
+       return super.onCreateOptionsMenu(menu);
    }
 	    
     static class RestaurantHolder {
@@ -228,12 +235,5 @@ public class LunchList extends TabActivity {
 				currentRestaurantType = RestaurantType.DELIVERY;
 			}
 		}
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.options, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-    
+    }  
 }
