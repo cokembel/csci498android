@@ -17,9 +17,16 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.*;
 import android.app.TabActivity;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class LunchList extends TabActivity {
+	
+	public enum RestaurantType {
+		SIT_DOWN,
+		TAKE_OUT,
+		DELIVERY;
+	}
 	
 	List<Restaurant> model = new ArrayList<Restaurant>();
 	RestaurantAdapter adapter = null;
@@ -33,12 +40,7 @@ public class LunchList extends TabActivity {
 	RadioGroup typesRadioGroup;
 	
 	int progress;
-	
-	public enum RestaurantType {
-		SIT_DOWN,
-		TAKE_OUT,
-		DELIVERY;
-	}
+	AtomicBoolean isActive = new AtomicBoolean(true);
 	
 	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
     	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
@@ -59,7 +61,7 @@ public class LunchList extends TabActivity {
 	
 	private Runnable longTask = new Runnable() {
 		public void run() {
-			for(int i=progress; i<10000; i+=200) {
+			for(int i=progress; i<10000 && isActive.get(); i+=200) {
 				doSomeLongWork(200);
 			}
 			
@@ -153,6 +155,12 @@ public class LunchList extends TabActivity {
 			new Thread(longTask).start();
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		isActive.set(false);
 	}
 	
 	private void doSomeLongWork(final int incr) {
