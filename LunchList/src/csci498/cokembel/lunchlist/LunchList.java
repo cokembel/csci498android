@@ -48,6 +48,7 @@ public class LunchList extends TabActivity {
     		name.setText(current.getName());
     		address.setText(current.getAddress());
     		notes.setText(current.getNotes());
+    		
     		if (current.getType().equals("sit_down")) {
     			typesRadioGroup.check(R.id.sit_down);
     		}else if (current.getType().equals("take_out")) {
@@ -55,6 +56,7 @@ public class LunchList extends TabActivity {
     		}else {
     			typesRadioGroup.check(R.id.delivery);
     		}
+    		
     		getTabHost().setCurrentTab(1);
     	}
 	};
@@ -97,6 +99,7 @@ public class LunchList extends TabActivity {
 					current.setType("delivery");
 					break;
 			}	
+			
 			adapter.add(current);
 		}
 	};
@@ -148,6 +151,7 @@ public class LunchList extends TabActivity {
 			if(current != null) {
 				message = current.getNotes();
 			}
+			
 			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 			return true;
 			
@@ -155,6 +159,7 @@ public class LunchList extends TabActivity {
 			startWork();
 			return true;
 		}
+		
 		return super.onOptionsItemSelected(item);
 	}
 	
@@ -168,6 +173,7 @@ public class LunchList extends TabActivity {
 	public void onResume() {
 		super.onResume();
 		isActive.set(true);
+		
 		if (progress > 0) {
 			startWork();
 		}
