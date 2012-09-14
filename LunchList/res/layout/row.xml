@@ -3,18 +3,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="4dip" >
-
         <ImageView
             android:id="@+id/icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ball_green" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
-
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
@@ -24,7 +21,6 @@
                 android:maxLines="1"
                 android:text="title"
                 android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/address"
                 android:layout_width="match_parent"
@@ -35,5 +31,4 @@
                 android:maxLines="1"
                 android:text="TextView" />
         </LinearLayout>
-
     </LinearLayout>
