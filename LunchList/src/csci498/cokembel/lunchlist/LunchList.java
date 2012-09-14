@@ -151,6 +151,13 @@ public class LunchList extends TabActivity {
 	}
 	
 	private void doSomeLongWork(final int incr) {
+		runOnUiThread(new Runnable() {
+			public void run() {
+				progress+=incr;
+				setProgress(progress);
+			}
+		});
+		
 		SystemClock.sleep(250);
 	}
 	
