@@ -145,13 +145,13 @@ public class LunchList extends TabActivity {
 		if (item.getItemId() == R.id.toast) {
 			String message = "No restaurant selected";
 			
-			if (current != null) {
+			if(current != null) {
 				message = current.getNotes();
 			}
 			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 			return true;
 			
-		}else if (item.getItemId() == R.id.run) {
+		}else if(item.getItemId() == R.id.run) {
 			startWork();
 			return true;
 		}
@@ -255,11 +255,11 @@ public class LunchList extends TabActivity {
     		name.setText(r.getName());
     		address.setText(r.getAddress());
     		
-    		if (r.getType().equals("sit_down")) {
+    		if(r.getType().equals("sit_down")) {
     			icon.setImageResource(R.drawable.ball_red);
     			name.setTextColor(Color.RED);
     			currentRestaurantType = RestaurantType.SIT_DOWN;
-			}else if (r.getType().equals("take_out")) {
+			}else if(r.getType().equals("take_out")) {
 				icon.setImageResource(R.drawable.ball_yellow);
 				name.setTextColor(Color.YELLOW);
 				currentRestaurantType = RestaurantType.TAKE_OUT;
