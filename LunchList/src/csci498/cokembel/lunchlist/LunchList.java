@@ -5,6 +5,7 @@ import java.util.List;
 
 import csci498.cokembel.lunshlist.R;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.*;
 import android.app.TabActivity;
 
@@ -27,6 +29,8 @@ public class LunchList extends TabActivity {
 	EditText address = null;
 	EditText notes = null;
 	RadioGroup typesRadioGroup;
+	
+	int progress;
 	
 	public static RestaurantType currentRestaurantType;
 	
@@ -50,7 +54,8 @@ public class LunchList extends TabActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	setTitle("LunchList");
-        super.onCreate(savedInstanceState);
+    	super.onCreate(savedInstanceState);
+    	requestWindowFeature(Window.FEATURE_PROGRESS);
         setContentView(R.layout.activity_main);
       
         
@@ -111,6 +116,18 @@ public class LunchList extends TabActivity {
 			adapter.add(current);
 		}
 	};
+	
+	private Runnable longTask = new Runnable() {
+		public void run() {
+			for(int i=0; i<20; i++) {
+				doSomeLongWork(500);
+			}
+		}
+	};
+	
+	private void doSomeLongWork(final int incr) {
+		SystemClock.sleep(250);
+	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
