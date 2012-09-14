@@ -150,9 +150,8 @@ public class LunchList extends TabActivity {
 			return true;
 			
 		}else if (item.getItemId() == R.id.run) {
-			setProgressBarVisibility(true);
-			progress = 0;
-			new Thread(longTask).start();
+			startWork();
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -161,6 +160,26 @@ public class LunchList extends TabActivity {
 	public void onPause() {
 		super.onPause();
 		isActive.set(false);
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		isActive.set(true);
+		if (progress > 0) {
+			startWork();
+		}
+	}
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+       getMenuInflater().inflate(R.menu.options, menu);
+       return super.onCreateOptionsMenu(menu);
+    }
+	
+	private void startWork() {
+		setProgressBarVisibility(true);
+		new Thread(longTask).start();
 	}
 	
 	private void doSomeLongWork(final int incr) {
@@ -216,13 +235,7 @@ public class LunchList extends TabActivity {
 			return 3;
     	}
    }
-   
-   @Override
-   public boolean onCreateOptionsMenu(Menu menu) {
-       getMenuInflater().inflate(R.menu.options, menu);
-       return super.onCreateOptionsMenu(menu);
-   }
-	    
+       
     static class RestaurantHolder {
     	
     	private TextView name = null;
