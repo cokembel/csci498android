@@ -22,16 +22,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class LunchList extends TabActivity {
 	
-	public enum RestaurantType {
-		SIT_DOWN,
-		TAKE_OUT,
-		DELIVERY;
-	}
-	
 	List<Restaurant> model = new ArrayList<Restaurant>();
 	RestaurantAdapter adapter = null;
 	Restaurant current =  null;
-	public static RestaurantType currentRestaurantType;
 	
 	RadioButton sit_down, take_out, delivery;
 	EditText name = null;
@@ -227,21 +220,6 @@ public class LunchList extends TabActivity {
     		
     		return(row);
     	}
-    	
-    	@Override
-    	public int getItemViewType(int position) {
-    		if(currentRestaurantType == RestaurantType.SIT_DOWN) {
-    			return 1;
-    		}else if(currentRestaurantType == RestaurantType.TAKE_OUT) {
-    			return 2;
-    		}
-    		return 3;
-    	}
-    	
-    	@Override
-    	public int getViewTypeCount() {
-			return 3;
-    	}
    }
        
     static class RestaurantHolder {
@@ -264,15 +242,13 @@ public class LunchList extends TabActivity {
     		if(r.getType().equals("sit_down")) {
     			icon.setImageResource(R.drawable.ball_red);
     			name.setTextColor(Color.RED);
-    			currentRestaurantType = RestaurantType.SIT_DOWN;
 			}else if(r.getType().equals("take_out")) {
 				icon.setImageResource(R.drawable.ball_yellow);
 				name.setTextColor(Color.YELLOW);
-				currentRestaurantType = RestaurantType.TAKE_OUT;
 			}else {
+			
 				icon.setImageResource(R.drawable.ball_green);
 				name.setTextColor(Color.GREEN);
-				currentRestaurantType = RestaurantType.DELIVERY;
 			}
 		}
     }  
