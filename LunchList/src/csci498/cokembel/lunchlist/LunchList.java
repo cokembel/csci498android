@@ -38,18 +38,8 @@ public class LunchList extends TabActivity {
 	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
     	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
     		current=model.get(position);
-    		name.setText(current.getName());
-    		address.setText(current.getAddress());
-    		notes.setText(current.getNotes());
     		
-    		if (current.getType().equals("sit_down")) {
-    			typesRadioGroup.check(R.id.sit_down);
-    		}else if (current.getType().equals("take_out")) {
-    			typesRadioGroup.check(R.id.take_out);
-    		}else {
-    			typesRadioGroup.check(R.id.delivery);
-    		}
-    		
+    		setDetails();
     		getTabHost().setCurrentTab(1);
     	}
 	};
@@ -73,26 +63,7 @@ public class LunchList extends TabActivity {
 	 private View.OnClickListener onSave = new View.OnClickListener() {
 			
 		public void onClick(View v) {
-			current = new Restaurant();
-			EditText name = (EditText) findViewById(R.id.name);
-			EditText address = (EditText)findViewById(R.id.addr);
-			
-			current.setName(name.getText().toString());
-			current.setAddress(address.getText().toString());
-			current.setNotes(notes.getText().toString());
-
-			switch (typesRadioGroup.getCheckedRadioButtonId()) {
-				case R.id.take_out:
-					current.setType("take_out");
-					break;
-				case R.id.sit_down:
-					current.setType("sit_down");
-					break;
-				case R.id.delivery:
-					current.setType("delivery");
-					break;
-			}	
-			
+			retrieveRestaurantDetails();
 			adapter.add(current);
 		}
 	};
@@ -178,6 +149,61 @@ public class LunchList extends TabActivity {
        return super.onCreateOptionsMenu(menu);
     }
 	
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState){
+		retrieveRestaurantDetails();
+		super.onSaveInstanceState(savedInstanceState);
+		savedInstanceState.putString("currentName", current.getName());
+		savedInstanceState.putString("currentAddress",current.getAddress());
+		savedInstanceState.putString("currentType", current.getType());
+		savedInstanceState.putString("currentNotes", current.getNotes());
+	}
+	
+	@Override
+	public void onRestoreInstanceState(Bundle savedInstanceState){
+		current = new Restaurant();
+		current.setName(savedInstanceState.getString("currentName"));
+		current.setAddress(savedInstanceState.getString("currentAddress"));
+		current.setType(savedInstanceState.getString("currentType"));
+		current.setNotes(savedInstanceState.getString("currentNotes"));
+		setDetails();
+		getTabHost().setCurrentTab(1);
+	}
+	
+	private void setDetails(){
+		name.setText(current.getName());
+		address.setText(current.getAddress());
+		notes.setText(current.getNotes());
+		
+		if (current.getType().equals("sit_down")) {
+			typesRadioGroup.check(R.id.sit_down);
+		}else if (current.getType().equals("take_out")) {
+			typesRadioGroup.check(R.id.take_out);
+		}else {
+			typesRadioGroup.check(R.id.delivery);
+		}
+	}
+	
+	private void retrieveRestaurantDetails(){
+		current = new Restaurant();
+		
+		current.setName(name.getText().toString());
+		current.setAddress(address.getText().toString());
+		current.setNotes(notes.getText().toString());
+
+		switch (typesRadioGroup.getCheckedRadioButtonId()) {
+			case R.id.take_out:
+				current.setType("take_out");
+				break;
+			case R.id.sit_down:
+				current.setType("sit_down");
+				break;
+			case R.id.delivery:
+				current.setType("delivery");
+				break;
+		}
+	}
+	
 	private void startWork() {
 		setProgressBarVisibility(true);
 		new Thread(longTask).start();
@@ -222,7 +248,7 @@ public class LunchList extends TabActivity {
     	}
    }
        
-    static class RestaurantHolder {
+   public static class RestaurantHolder {
     	
     	private TextView name = null;
     	private TextView address  =null;
