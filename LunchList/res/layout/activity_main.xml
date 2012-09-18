@@ -29,18 +29,18 @@
 				    android:stretchColumns="1" 
 				    android:shrinkColumns="1">
 				    <TableRow>
-				        <TextView android:text="Name:" />
+				        <TextView android:text="@string/name" />
 				        <EditText android:id="@+id/name" />
 				    </TableRow>
 				    <TableRow>
-				        <TextView android:text="Address:" />
+				        <TextView android:text="@string/address" />
 				        <AutoCompleteTextView android:id="@+id/addr" />
 				    </TableRow>
 				    <TableRow
 				        android:id="@+id/radioRow"
 				        android:layout_width="wrap_content"
 				        android:layout_height="wrap_content" >
-				        <TextView android:text="Type:" />
+				        <TextView android:text="@string/type" />
 				        <RadioGroup android:id="@+id/types">
 							<RadioButton android:id="@+id/take_out"
 								android:text="Take-Out"
@@ -55,7 +55,7 @@
 						</RadioGroup>
 					</TableRow>	
 					<TableRow> 
-						<TextView android:text="Notes:" />
+						<TextView android:text="@string/notes" />
 						<EditText android:id="@+id/notes"
 						    android:singleLine="false"
 						    android:gravity="top"
