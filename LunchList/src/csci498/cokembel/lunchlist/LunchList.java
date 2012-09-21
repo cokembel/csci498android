@@ -54,7 +54,6 @@ public class LunchList extends TabActivity {
     			typesRadioGroup.check(R.id.delivery);
     		}
     
-    		
     		getTabHost().setCurrentTab(1);
     	}
 	};
@@ -72,7 +71,6 @@ public class LunchList extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
     	setTitle("LunchList");
     	super.onCreate(savedInstanceState);
-    	//requestWindowFeature(Window.FEATURE_PROGRESS);
         setContentView(R.layout.activity_main);
       
         
