@@ -25,6 +25,7 @@ public class LunchList extends TabActivity {
 	List<Restaurant> model = new ArrayList<Restaurant>();
 	RestaurantAdapter adapter = null;
 	Restaurant current =  null;
+	RestaurantHelper restaurantHelper = null;
 	
 	RadioButton sit_down, take_out, delivery;
 	EditText name = null;
@@ -43,8 +44,8 @@ public class LunchList extends TabActivity {
     		getTabHost().setCurrentTab(1);
     	}
 	};
-	
-	private Runnable longTask = new Runnable() {
+	/*
+	private Runnable longTask = new Runnable() {/*
 		public void run() {
 			for(int i=progress; i<10000 && isActive.get(); i+=200) {
 				doSomeLongWork(200);
@@ -58,7 +59,7 @@ public class LunchList extends TabActivity {
 				});
 			}
 		}
-	};
+	};*/
 	
 	 private View.OnClickListener onSave = new View.OnClickListener() {
 			
@@ -87,6 +88,7 @@ public class LunchList extends TabActivity {
         
         ListView restaurantList = (ListView)findViewById(R.id.restaurants);
         adapter = new RestaurantAdapter();
+        restaurantHelper = new RestaurantHelper(this);
         
         restaurantList.setAdapter(adapter);
         
@@ -106,9 +108,9 @@ public class LunchList extends TabActivity {
         
         restaurantList.setOnItemClickListener(onListClick); 		
     }
-    
+    /*
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {/*
+	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.toast) {
 			String message = "No restaurant selected";
 			
@@ -125,7 +127,7 @@ public class LunchList extends TabActivity {
 		}
 		
 		return super.onOptionsItemSelected(item);*/
-	}
+	//}
 	
 	@Override
 	public void onPause() {/*
@@ -139,15 +141,21 @@ public class LunchList extends TabActivity {
 		isActive.set(true);
 		
 		if (progress > 0) {
-			startWork();*/
-		}
+			startWork();
+		}*/
 	}
 	
 	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {/*
+	public void onDestroy(){
+		super.onDestroy();
+		restaurantHelper.close();
+	}
+	/*
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
        getMenuInflater().inflate(R.menu.options, menu);
        return super.onCreateOptionsMenu(menu);*/
-    }
+    //}
 	
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState){
