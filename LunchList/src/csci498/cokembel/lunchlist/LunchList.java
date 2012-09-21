@@ -37,39 +37,20 @@ public class LunchList extends TabActivity {
 	String restaurantType = null;
 	RadioGroup typesRadioGroup;
 	
-	//int progress;
-	//AtomicBoolean isActive = new AtomicBoolean(true);
-	
 	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
     	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-    		//current=model.get(position);
+    		model.moveToPosition(position);
+    		name.setText(restaurantHelper.getName(model));
+    		address.setText(restaurantHelper.getAddress(model));
+    		notes.setText(restaurantHelper.getNotes(model));
     		
-    		setDetails();
     		getTabHost().setCurrentTab(1);
     	}
 	};
-	/*
-	private Runnable longTask = new Runnable() {/*
-		public void run() {
-			for(int i=progress; i<10000 && isActive.get(); i+=200) {
-				doSomeLongWork(200);
-			}
-			
-			if(isActive.get()) {
-				runOnUiThread(new Runnable() {
-					public void run() {
-						setProgressBarVisibility(false);
-					}
-				});
-			}
-		}
-	};*/
 	
 	 private View.OnClickListener onSave = new View.OnClickListener() {
 			
 		public void onClick(View v) {
-			retrieveRestaurantDetails();
-			//adapter.add(current);
 			
 			restaurantHelper.insert(name.getText().toString(),address.getText().toString(), restaurantType,notes.getText().toString());
 		}
@@ -120,41 +101,13 @@ public class LunchList extends TabActivity {
         
         restaurantList.setOnItemClickListener(onListClick); 		
     }
-    /*
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.toast) {
-			String message = "No restaurant selected";
-			
-			if(current != null) {
-				message = current.getNotes();
-			}
-			
-			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-			return true;
-			
-		}else if(item.getItemId() == R.id.run) {
-			startWork();
-			return true;
-		}
-		
-		return super.onOptionsItemSelected(item);*/
-	//}
 	
 	@Override
-	public void onPause() {/*
-		super.onPause();
-		isActive.set(false);*/
+	public void onPause() {
 	}
 	
 	@Override
-	public void onResume() {/*
-		super.onResume();
-		isActive.set(true);
-		
-		if (progress > 0) {
-			startWork();
-		}*/
+	public void onResume() {
 	}
 	
 	@Override
@@ -162,86 +115,6 @@ public class LunchList extends TabActivity {
 		super.onDestroy();
 		restaurantHelper.close();
 	}
-	/*
-	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-       getMenuInflater().inflate(R.menu.options, menu);
-       return super.onCreateOptionsMenu(menu);*/
-    //}
-	
-	@Override
-	public void onSaveInstanceState(Bundle savedInstanceState){
-		retrieveRestaurantDetails();
-		super.onSaveInstanceState(savedInstanceState);
-		savedInstanceState.putString("currentName", current.getName());
-		savedInstanceState.putString("currentAddress",current.getAddress());
-		savedInstanceState.putString("currentType", current.getType());
-		savedInstanceState.putString("currentNotes", current.getNotes());
-	}
-	
-	@Override
-	public void onRestoreInstanceState(Bundle savedInstanceState){
-		current = new Restaurant();
-		current.setName(savedInstanceState.getString("currentName"));
-		current.setAddress(savedInstanceState.getString("currentAddress"));
-		current.setType(savedInstanceState.getString("currentType"));
-		current.setNotes(savedInstanceState.getString("currentNotes"));
-		setDetails();
-		getTabHost().setCurrentTab(1);
-	}
-	
-	private void setDetails(){
-		name.setText(current.getName());
-		address.setText(current.getAddress());
-		notes.setText(current.getNotes());
-		
-		if (current.getType().equals("sit_down")) {
-			typesRadioGroup.check(R.id.sit_down);
-		}else if (current.getType().equals("take_out")) {
-			typesRadioGroup.check(R.id.take_out);
-		}else {
-			typesRadioGroup.check(R.id.delivery);
-		}
-	}
-	
-	private void retrieveRestaurantDetails(){
-		current = new Restaurant();
-		
-		current.setName(name.getText().toString());
-		current.setAddress(address.getText().toString());
-		current.setNotes(notes.getText().toString());
-
-		switch (typesRadioGroup.getCheckedRadioButtonId()) {
-			case R.id.take_out:
-				current.setType("take_out");
-				restaurantType = "take_out";
-				break;
-			case R.id.sit_down:
-				current.setType("sit_down");
-				restaurantType = "sit_down";
-				break;
-			case R.id.delivery:
-				current.setType("delivery");
-				restaurantType = "delivery";
-				break;
-		}
-	}
-	/*
-	private void startWork() {
-		setProgressBarVisibility(true);
-		new Thread(longTask).start();
-	}*/
-	/*
-	private void doSomeLongWork(final int incr) {
-		runOnUiThread(new Runnable() {
-			public void run() {
-				progress+=incr;
-				setProgress(progress);
-			}
-		});
-		
-		SystemClock.sleep(250);
-	}*/
 	
     public class RestaurantAdapter extends CursorAdapter {
 	   	
