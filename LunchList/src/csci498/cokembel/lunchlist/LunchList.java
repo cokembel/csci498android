@@ -31,6 +31,7 @@ public class LunchList extends TabActivity {
 	EditText name = null;
 	EditText address = null;
 	EditText notes = null;
+	String restaurantType = null;
 	RadioGroup typesRadioGroup;
 	
 	//int progress;
@@ -66,6 +67,8 @@ public class LunchList extends TabActivity {
 		public void onClick(View v) {
 			retrieveRestaurantDetails();
 			adapter.add(current);
+			
+			restaurantHelper.insert(name.getText().toString(),address.getText().toString(), restaurantType,notes.getText().toString());
 		}
 	};
 
@@ -202,12 +205,15 @@ public class LunchList extends TabActivity {
 		switch (typesRadioGroup.getCheckedRadioButtonId()) {
 			case R.id.take_out:
 				current.setType("take_out");
+				restaurantType = "take_out";
 				break;
 			case R.id.sit_down:
 				current.setType("sit_down");
+				restaurantType = "sit_down";
 				break;
 			case R.id.delivery:
 				current.setType("delivery");
+				restaurantType = "delivery";
 				break;
 		}
 	}
