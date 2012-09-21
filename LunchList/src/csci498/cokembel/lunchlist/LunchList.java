@@ -44,6 +44,17 @@ public class LunchList extends TabActivity {
     		address.setText(restaurantHelper.getAddress(model));
     		notes.setText(restaurantHelper.getNotes(model));
     		
+    		if (restaurantHelper.getType(model).equals("sit_down")) {
+    			typesRadioGroup.check(R.id.sit_down);
+    		}
+    		else if (restaurantHelper.getType(model).equals("take_out")) {
+    			typesRadioGroup.check(R.id.take_out);
+    		}
+    		else {
+    			typesRadioGroup.check(R.id.delivery);
+    		}
+    
+    		
     		getTabHost().setCurrentTab(1);
     	}
 	};
@@ -78,7 +89,7 @@ public class LunchList extends TabActivity {
         
         model = restaurantHelper.getAll();
         startManagingCursor(model);
-        adapter=new RestaurantAdapter(model);
+        adapter = new RestaurantAdapter(model);
         restaurantList.setAdapter(adapter);
        
         restaurantHelper = new RestaurantHelper(this);
@@ -119,12 +130,12 @@ public class LunchList extends TabActivity {
     public class RestaurantAdapter extends CursorAdapter {
 	   	
     	RestaurantAdapter(Cursor c) {
-    		super(LunchList.this, c);
+    	super(LunchList.this, c);
     	}
     	
     	@Override
     	public void bindView(View row, Context ctxt, Cursor c) {
-	    	RestaurantHolder holder=(RestaurantHolder)row.getTag();
+	    	RestaurantHolder holder = (RestaurantHolder)row.getTag();
 	    	holder.populateFrom(c, restaurantHelper);
     	}
     	
