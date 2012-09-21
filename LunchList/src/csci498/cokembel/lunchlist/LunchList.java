@@ -66,7 +66,7 @@ public class LunchList extends TabActivity {
 			
 		public void onClick(View v) {
 			retrieveRestaurantDetails();
-			adapter.add(current);
+			//adapter.add(current);
 			
 			restaurantHelper.insert(name.getText().toString(),address.getText().toString(), restaurantType,notes.getText().toString());
 		}
