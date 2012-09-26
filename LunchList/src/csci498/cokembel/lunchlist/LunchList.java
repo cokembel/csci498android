@@ -3,6 +3,7 @@ package csci498.cokembel.lunchlist;
 import csci498.cokembel.lunshlist.R;
 import android.os.Bundle;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,7 +36,6 @@ public class LunchList extends ListActivity {
 	@Override
 	public void onListItemClick(ListView list, View view, int position, long id) {
 		Intent i=new Intent(LunchList.this, DetailForm.class);
-		
 		i.putExtra(ID_EXTRA, String.valueOf(id));
 		startActivity(i);
 	}
@@ -53,6 +53,8 @@ public class LunchList extends ListActivity {
         startManagingCursor(model);
         adapter = new RestaurantAdapter(model);
         setListAdapter(adapter);		
+        
+        Log.d("1", "here");
     }
 
 	@Override

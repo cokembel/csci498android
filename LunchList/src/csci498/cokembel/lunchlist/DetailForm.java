@@ -4,11 +4,13 @@ import csci498.cokembel.lunshlist.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.util.Log;
 
 public class DetailForm extends Activity {
 	
@@ -89,12 +91,12 @@ public class DetailForm extends Activity {
 			}
 			if (restaurantId==null) {
 				helper.insert(name.getText().toString(),
-				address.getText().toString(), type,
-				notes.getText().toString());
-			}else {
+					address.getText().toString(), type,
+					notes.getText().toString());
+			}else {		
 				helper.update(restaurantId, name.getText().toString(),
-				address.getText().toString(), type,
-				notes.getText().toString());
+					address.getText().toString(), type,
+					notes.getText().toString());	
 			}
 			finish();
 		}
