@@ -7,18 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import android.app.TabActivity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 
 
 @SuppressWarnings("deprecation")
-public class LunchList extends TabActivity {
+public class LunchList extends ListActivity {
 	
 	Cursor model = null;
 	RestaurantAdapter adapter = null;
-	//Restaurant current =  null;
 	RestaurantHelper restaurantHelper = null;
 	
 	RadioButton sit_down, take_out, delivery;
@@ -35,27 +34,6 @@ public class LunchList extends TabActivity {
     		
     	}
 	};
-	
-	 private View.OnClickListener onSave = new View.OnClickListener() {
-			
-		public void onClick(View v) {
-			String type=null;
-			
-			switch (typesRadioGroup.getCheckedRadioButtonId()) {
-				case R.id.sit_down:
-					type="sit_down";
-					break;
-				case R.id.take_out:
-					type="take_out";
-					break;
-				case R.id.delivery:
-					type="delivery";
-					break;
-			}
-			restaurantHelper.insert(name.getText().toString(),address.getText().toString(), type,notes.getText().toString());
-			model.requery();
-		}
-	};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,39 +42,11 @@ public class LunchList extends TabActivity {
         setContentView(R.layout.activity_main);
         
         restaurantHelper = new RestaurantHelper(this);
-        
-        name = (EditText)findViewById(R.id.name);
-        address = (EditText)findViewById(R.id.addr);
-        typesRadioGroup = (RadioGroup)findViewById(R.id.types);
-        notes = (EditText)findViewById(R.id.notes);
-         
-        Button save = (Button) findViewById(R.id.save);
-      
-        save.setOnClickListener(onSave);
-        
-        ListView restaurantList = (ListView)findViewById(R.id.restaurants);
-        
-        
+          
         model = restaurantHelper.getAll();
         startManagingCursor(model);
         adapter = new RestaurantAdapter(model);
-        restaurantList.setAdapter(adapter);
-        
-        TabHost.TabSpec spec=getTabHost().newTabSpec("tag1");
-        
-        spec.setContent(R.id.restaurants);
-        spec.setIndicator("List", getResources().getDrawable(R.drawable.list));
-
-        getTabHost().addTab(spec);
-        
-        spec=getTabHost().newTabSpec("tag2");
-        spec.setContent(R.id.details);
-        spec.setIndicator("Details", getResources().getDrawable(R.drawable.restaurant));
-        
-        getTabHost().addTab(spec);
-        getTabHost().setCurrentTab(0);
-        
-        restaurantList.setOnItemClickListener(onListClick); 		
+        setListAdapter(adapter);		
     }
 
 	@Override
