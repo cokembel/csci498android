@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import android.app.TabActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 
 
@@ -28,23 +29,10 @@ public class LunchList extends TabActivity {
 	RadioGroup typesRadioGroup;
 	
 	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
-    	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-    		model.moveToPosition(position);
-    		name.setText(restaurantHelper.getName(model));
-    		address.setText(restaurantHelper.getAddress(model));
-    		notes.setText(restaurantHelper.getNotes(model));
+    	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    		Intent i = new Intent(LunchList.this, DetailForm.class);
+    		startActivity(i);
     		
-    		if (restaurantHelper.getType(model).equals("sit_down")) {
-    			typesRadioGroup.check(R.id.sit_down);
-    		}
-    		else if (restaurantHelper.getType(model).equals("take_out")) {
-    			typesRadioGroup.check(R.id.take_out);
-    		}
-    		else {
-    			typesRadioGroup.check(R.id.delivery);
-    		}
-    
-    		getTabHost().setCurrentTab(1);
     	}
 	};
 	
