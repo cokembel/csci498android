@@ -27,13 +27,24 @@ public class LunchList extends ListActivity {
 	String restaurantType = null;
 	RadioGroup typesRadioGroup;
 	
+	public final static String ID_EXTRA = "csci498.cokembel.lunchlist._ID";
+	/*
 	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
-    	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    	public void onListItemClick(ListView list, View view, int position, long id) {
     		Intent i = new Intent(LunchList.this, DetailForm.class);
     		startActivity(i);
     		
     	}
 	};
+	*/
+	@Override
+	public void onListItemClick(ListView list, View view, int position, long id) {
+		Intent i=new Intent(LunchList.this, DetailForm.class);
+		
+		i.putExtra(ID_EXTRA, String.valueOf(id));
+		startActivity(i);
+	}
+	
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
