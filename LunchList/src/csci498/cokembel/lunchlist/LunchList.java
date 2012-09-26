@@ -4,6 +4,9 @@ import csci498.cokembel.lunshlist.R;
 import android.os.Bundle;
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -28,15 +31,7 @@ public class LunchList extends ListActivity {
 	RadioGroup typesRadioGroup;
 	
 	public final static String ID_EXTRA = "csci498.cokembel.lunchlist._ID";
-	/*
-	private AdapterView.OnItemClickListener onListClick = new AdapterView.OnItemClickListener() {
-    	public void onListItemClick(ListView list, View view, int position, long id) {
-    		Intent i = new Intent(LunchList.this, DetailForm.class);
-    		startActivity(i);
-    		
-    	}
-	};
-	*/
+
 	@Override
 	public void onListItemClick(ListView list, View view, int position, long id) {
 		Intent i=new Intent(LunchList.this, DetailForm.class);
@@ -86,6 +81,22 @@ public class LunchList extends ListActivity {
 	    	row.setTag(holder);
 	    	return(row);
     	}
+   }
+    
+   @Override
+   public boolean onCreateOptionsMenu(Menu menu) {
+	   new MenuInflater(this).inflate(R.menu.options, menu);
+	   
+	   return(super.onCreateOptionsMenu(menu));
+   }
+   
+   @Override
+   public boolean onOptionsItemSelected(MenuItem item) {
+	   if(item.getItemId() == R.id.add) {
+		   startActivity(new Intent(LunchList.this, DetailForm.class));
+		   return(true);
+	   }
+	   return(super.onOptionsItemSelected(item));
    }
        
    public static class RestaurantHolder {
