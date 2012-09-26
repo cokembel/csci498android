@@ -3,14 +3,14 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteQueryBuilder;
-import android.database.*;
+import android.database.Cursor;
 import android.content.ContentValues;
+import android.database.sqlite.SQLiteQueryBuilder;
 
 class RestaurantHelper extends SQLiteOpenHelper {
 	
-	private static final String DATABASE_NAME="lunchlist.db";
-	private static final int SCHEMA_VERSION=1;
+	private static final String DATABASE_NAME = "lunchlist.db";
+	private static final int SCHEMA_VERSION = 1;
 	
 	public RestaurantHelper(Context context) {
 		super(context, DATABASE_NAME, null, SCHEMA_VERSION);
@@ -28,11 +28,13 @@ class RestaurantHelper extends SQLiteOpenHelper {
 	}
 	
 	public void insert(String name, String address,String type, String notes) {
-		ContentValues cv=new ContentValues();
+		ContentValues cv = new ContentValues();
+		
 		cv.put("name", name);
 		cv.put("address", address);
 		cv.put("type", type);
 		cv.put("notes", notes);
+		
 		getWritableDatabase().insert("restaurants", "name", cv);
 	}
 	

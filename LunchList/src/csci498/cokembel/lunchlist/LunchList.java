@@ -1,33 +1,23 @@
 package csci498.cokembel.lunchlist;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import csci498.cokembel.lunshlist.R;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.app.Activity;
 import android.graphics.Color;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.*;
 import android.app.TabActivity;
 import android.content.Context;
 import android.database.Cursor;
 
-import java.util.concurrent.atomic.AtomicBoolean;
 
-
+@SuppressWarnings("deprecation")
 public class LunchList extends TabActivity {
 	
 	Cursor model = null;
 	RestaurantAdapter adapter = null;
-	Restaurant current =  null;
+	//Restaurant current =  null;
 	RestaurantHelper restaurantHelper = null;
 	
 	RadioButton sit_down, take_out, delivery;
@@ -61,8 +51,20 @@ public class LunchList extends TabActivity {
 	 private View.OnClickListener onSave = new View.OnClickListener() {
 			
 		public void onClick(View v) {
+			String type=null;
 			
-			restaurantHelper.insert(name.getText().toString(),address.getText().toString(), restaurantType,notes.getText().toString());
+			switch (typesRadioGroup.getCheckedRadioButtonId()) {
+				case R.id.sit_down:
+					type="sit_down";
+					break;
+				case R.id.take_out:
+					type="take_out";
+					break;
+				case R.id.delivery:
+					type="delivery";
+					break;
+			}
+			restaurantHelper.insert(name.getText().toString(),address.getText().toString(), type,notes.getText().toString());
 			model.requery();
 		}
 	};
@@ -72,7 +74,8 @@ public class LunchList extends TabActivity {
     	setTitle("LunchList");
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      
+        
+        restaurantHelper = new RestaurantHelper(this);
         
         name = (EditText)findViewById(R.id.name);
         address = (EditText)findViewById(R.id.addr);
@@ -89,10 +92,6 @@ public class LunchList extends TabActivity {
         model = restaurantHelper.getAll();
         startManagingCursor(model);
         adapter = new RestaurantAdapter(model);
-        restaurantList.setAdapter(adapter);
-       
-        restaurantHelper = new RestaurantHelper(this);
-        
         restaurantList.setAdapter(adapter);
         
         TabHost.TabSpec spec=getTabHost().newTabSpec("tag1");
@@ -111,15 +110,7 @@ public class LunchList extends TabActivity {
         
         restaurantList.setOnItemClickListener(onListClick); 		
     }
-	
-	@Override
-	public void onPause() {
-	}
-	
-	@Override
-	public void onResume() {
-	}
-	
+
 	@Override
 	public void onDestroy(){
 		super.onDestroy();
@@ -140,9 +131,9 @@ public class LunchList extends TabActivity {
     	
     	@Override
     	public View newView(Context ctxt, Cursor c, ViewGroup parent) {
-	    	LayoutInflater inflater=getLayoutInflater();
+	    	LayoutInflater inflater = getLayoutInflater();
 	    	View row=inflater.inflate(R.layout.row, parent, false);
-	    	RestaurantHolder holder=new RestaurantHolder(row);
+	    	RestaurantHolder holder = new RestaurantHolder(row);
 	    	row.setTag(holder);
 	    	return(row);
     	}
@@ -172,7 +163,6 @@ public class LunchList extends TabActivity {
 				icon.setImageResource(R.drawable.ball_yellow);
 				name.setTextColor(Color.YELLOW);
 			}else {
-			
 				icon.setImageResource(R.drawable.ball_green);
 				name.setTextColor(Color.GREEN);
 			}
