@@ -96,7 +96,10 @@ public class LunchList extends ListActivity {
    public boolean onOptionsItemSelected(MenuItem item) {
 	   if(item.getItemId() == R.id.add) {
 		   startActivity(new Intent(LunchList.this, DetailForm.class));
-		   return(true);
+		   return true;
+	   } else if (item.getItemId() == R.id.prefs) {
+		   startActivity(new Intent(this, EditPreferences.class));
+		   return true;
 	   }
 	   return(super.onOptionsItemSelected(item));
    }
