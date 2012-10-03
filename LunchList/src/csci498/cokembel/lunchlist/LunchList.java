@@ -51,13 +51,14 @@ public class LunchList extends ListActivity {
         setContentView(R.layout.activity_main);
         
         restaurantHelper = new RestaurantHelper(this);
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
           
         model = restaurantHelper.getAll(prefs.getString("sort_order", "name"));
         startManagingCursor(model);
         adapter = new RestaurantAdapter(model);
         setListAdapter(adapter);		
         
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        initList();
         prefs.registerOnSharedPreferenceChangeListener(prefListener);
     }
 
