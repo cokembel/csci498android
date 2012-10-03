@@ -58,7 +58,7 @@ public class LunchList extends ListActivity {
         adapter = new RestaurantAdapter(model);
         setListAdapter(adapter);		
         
-        Log.d("1", "here");
+        prefs.registerOnSharedPreferenceChangeListener(prefListener);
     }
 
 	@Override
@@ -66,28 +66,6 @@ public class LunchList extends ListActivity {
 		super.onDestroy();
 		restaurantHelper.close();
 	}
-	
-    public class RestaurantAdapter extends CursorAdapter {
-	   	
-    	RestaurantAdapter(Cursor c) {
-    	super(LunchList.this, c);
-    	}
-    	
-    	@Override
-    	public void bindView(View row, Context ctxt, Cursor c) {
-	    	RestaurantHolder holder = (RestaurantHolder)row.getTag();
-	    	holder.populateFrom(c, restaurantHelper);
-    	}
-    	
-    	@Override
-    	public View newView(Context ctxt, Cursor c, ViewGroup parent) {
-	    	LayoutInflater inflater = getLayoutInflater();
-	    	View row=inflater.inflate(R.layout.row, parent, false);
-	    	RestaurantHolder holder = new RestaurantHolder(row);
-	    	row.setTag(holder);
-	    	return(row);
-    	}
-   }
     
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
@@ -106,6 +84,25 @@ public class LunchList extends ListActivity {
 		   return true;
 	   }
 	   return(super.onOptionsItemSelected(item));
+   }
+   
+   private SharedPreferences.OnSharedPreferenceChangeListener prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+	   public void onSharedPreferenceChanged(SharedPreferences sharedPrefs, String key) {
+		   if (key.equals("sort_order")) {
+			   initList();
+		   }
+	   }
+   };
+   
+   private void initList() {
+	   if (model != null) {
+		   stopManagingCursor(model);
+	   }
+	   
+	   model = restaurantHelper.getAll(prefs.getString("sort_order", "name"));
+	   startManagingCursor(model);
+	   adapter = new RestaurantAdapter(model);
+	   setListAdapter(adapter);
    }
        
    public static class RestaurantHolder {
@@ -136,5 +133,34 @@ public class LunchList extends ListActivity {
 				name.setTextColor(Color.GREEN);
 			}
 		}
-    }  
-}
+		
+    };  
+   
+   public class RestaurantAdapter extends CursorAdapter {
+	   	
+	   	RestaurantAdapter(Cursor c) {
+	   	super(LunchList.this, c);
+	   	}
+	   	
+	   	@Override
+	   	public void bindView(View row, Context ctxt, Cursor c) {
+		    	RestaurantHolder holder = (RestaurantHolder)row.getTag();
+		    	holder.populateFrom(c, restaurantHelper);
+	   	}
+	   	
+	   	@Override
+	   	public View newView(Context ctxt, Cursor c, ViewGroup parent) {
+		    	LayoutInflater inflater = getLayoutInflater();
+		    	View row=inflater.inflate(R.layout.row, parent, false);
+		    	RestaurantHolder holder = new RestaurantHolder(row);
+		    	row.setTag(holder);
+		    	return(row);
+	   	}
+	   	
+	};
+   
+};
+
+
+
+
