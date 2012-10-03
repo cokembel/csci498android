@@ -3,7 +3,7 @@
     <ListPreference
         android:key="sort_order"
         android:title="Sort Order"
-        android:summary="Choose the order the list uses"
+        android:summary="@string/sort_description"
         android:entries="@array/sort_names"
         android:entryValues="@array/sort_clauses"
         android:dialogTitle="Choose a sort order" />
