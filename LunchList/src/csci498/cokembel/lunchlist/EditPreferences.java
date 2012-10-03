@@ -1,6 +1,6 @@
 package csci498.cokembel.lunchlist;
 
-import android.R;
+import csci498.cokembel.lunshlist.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
