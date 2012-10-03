@@ -14,12 +14,15 @@ import android.widget.*;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.preference.PreferenceManager;
 
 
 @SuppressWarnings("deprecation")
 public class LunchList extends ListActivity {
+	
+	public final static String ID_EXTRA = "csci498.cokembel.lunchlist._ID";
 	
 	Cursor model = null;
 	RestaurantAdapter adapter = null;
@@ -31,8 +34,7 @@ public class LunchList extends ListActivity {
 	EditText notes = null;
 	String restaurantType = null;
 	RadioGroup typesRadioGroup;
-	
-	public final static String ID_EXTRA = "csci498.cokembel.lunchlist._ID";
+	SharedPreferences prefs;
 
 	@Override
 	public void onListItemClick(ListView list, View view, int position, long id) {
