@@ -23,8 +23,7 @@ class RestaurantHelper extends SQLiteOpenHelper {
 	
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// no-op, since will not be called until 2nd schema
-		// version exists
+		db.execSQL("ALTER TABLE restaurants ADD COLUMN feed TEXT");
 	}
 	
 	public void insert(String name, String address, String type, String notes) {
