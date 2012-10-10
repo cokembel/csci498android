@@ -1,5 +1,7 @@
 package csci498.cokembel.lunchlist;
 
+import csci498.cokembel.lunshlist.R;
+
 import org.mcsoxford.rss.RSSItem;
 import org.mcsoxford.rss.RSSReader;
 import org.mcsoxford.rss.RSSFeed;
@@ -7,6 +9,7 @@ import org.mcsoxford.rss.RSSFeed;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +21,7 @@ import android.widget.TextView;
 public class FeedActivity extends Activity {
 	
 	private InstanceState state = null;
+	public static final String FEED_URL = "csci498.cokembel.lunchlist.FEED_URL";
 	
 	private static class FeedTask extends AsyncTask<String, Void, RSSFeed> {
 		
@@ -110,4 +114,36 @@ public class FeedActivity extends Activity {
 	
 	};
 	
-}
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		state = (InstanceState) getLastNonConfigurationInstance();
+		
+		if (state == null) {
+			state = new InstanceState();
+			state.task = new FeedTask(this);
+			state.task.execute(getIntent().getStringExtra(FEED_URL));
+		} else {
+			if (state.task != null) {
+				setFeed(state.feed);
+			}
+		}
+	}
+	
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		if (state.task != null) {
+			state.task.detach();
+		}
+		
+		return state;
+	
+	}
+	
+	private void setFeed(RSSFeed feed) {
+		state.feed = feed;
+		setListAdapter(new FeedAdapter(feed));
+	}
+	
+};
