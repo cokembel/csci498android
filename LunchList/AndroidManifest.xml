@@ -23,6 +23,7 @@
         </activity>
         <activity android:name="csci498.cokembel.lunchlist.DetailForm"></activity>
         <activity android:name="csci498.cokembel.lunchlist.EditPreferences"></activity>
+        <activity android:name="csci498.cokembel.lunchlist.FeedActivity"></activity>
     </application>
 
 </manifest>
