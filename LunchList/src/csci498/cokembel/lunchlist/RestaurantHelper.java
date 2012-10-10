@@ -26,7 +26,7 @@ class RestaurantHelper extends SQLiteOpenHelper {
 		db.execSQL("ALTER TABLE restaurants ADD COLUMN feed TEXT");
 	}
 	
-	public void insert(String name, String address, String type, String notes) {
+	public void insert(String name, String address, String type, String notes, String feed) {
 		
 		ContentValues cv=new ContentValues();
 		
@@ -34,11 +34,12 @@ class RestaurantHelper extends SQLiteOpenHelper {
 		cv.put("address", address);
 		cv.put("type", type);
 		cv.put("notes", notes);
+		cv.put("feed", feed);
 		
 		getWritableDatabase().insert("restaurants", "name", cv);
 	}
 	
-	public void update(String id, String name, String address, String type, String notes) {
+	public void update(String id, String name, String address, String type, String notes, String feed) {
 		ContentValues cv = new ContentValues();
 		String[] args={id};
 		
@@ -46,6 +47,7 @@ class RestaurantHelper extends SQLiteOpenHelper {
 		cv.put("address", address);
 		cv.put("type", type);
 		cv.put("notes", notes);
+		cv.put("feed", feed);
 		
 		getWritableDatabase().update("restaurants", cv, "_ID=?", args);
 	}
@@ -53,28 +55,31 @@ class RestaurantHelper extends SQLiteOpenHelper {
 	public Cursor getById(String id) {
 		String[] args = {id};
 		
-		return(getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM restaurants WHERE _ID=?", args));
+		return getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes, feed FROM restaurants WHERE _ID=?", args);
 	}
 	
 	public Cursor getAll(String orderBy) {
 		
-		return getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM restaurants ORDER BY "+orderBy,null);
+		return getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes, feed FROM restaurants ORDER BY "+orderBy,null);
 	}
 	
 	public String getName(Cursor c) {
-		return(c.getString(1));
+		return c.getString(1);
 	}
 	
 	public String getAddress(Cursor c) {
-		return(c.getString(2));
+		return c.getString(2);
 	}
 	
 	public String getType(Cursor c) {
-		return(c.getString(3));
+		return c.getString(3);
 	}
 	
 	public String getNotes(Cursor c) {
-		return(c.getString(4));
+		return c.getString(4);
 	}
 
+	public String getFeed(Cursor c) {
+		return c.getString(5);
+	}
 }
