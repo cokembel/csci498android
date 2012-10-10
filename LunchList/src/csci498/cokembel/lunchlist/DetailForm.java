@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.database.Cursor;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -94,6 +96,13 @@ public class DetailForm extends Activity {
 		notes.setText(state.getString("notes"));
 		types.check(state.getInt("type"));
 		feed.setText(state.getString("feed"));
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		new MenuInflater(this).inflate(R.menu.details_option, menu);
+		
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	private View.OnClickListener onSave = new View.OnClickListener() {
