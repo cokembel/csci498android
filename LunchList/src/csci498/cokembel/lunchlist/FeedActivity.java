@@ -18,10 +18,53 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class FeedActivity extends Activity {
+public class FeedActivity extends ListActivity {
 	
 	private InstanceState state = null;
 	public static final String FEED_URL = "csci498.cokembel.lunchlist.FEED_URL";
+	
+	@SuppressWarnings("deprecation")
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		state = (InstanceState) getLastNonConfigurationInstance();
+		
+		if (state == null) {
+			state = new InstanceState();
+			state.task = new FeedTask(this);
+			state.task.execute(getIntent().getStringExtra(FEED_URL));
+		} else {
+			if (state.task != null) {
+				setFeed(state.feed);
+			}
+		}
+	}
+	
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		if (state.task != null) {
+			state.task.detach();
+		}
+		
+		return state;
+	
+	}
+	
+	private void setFeed(RSSFeed feed) {
+		state.feed = feed;
+		setListAdapter(new FeedAdapter(feed));
+	}
+	
+	private void goBlooey(Throwable t) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		
+		builder
+			.setTitle("Exception")
+			.setMessage(t.toString())
+			.setPositiveButton("OK",null)
+			.show();
+	}
 	
 	private static class FeedTask extends AsyncTask<String, Void, RSSFeed> {
 		
@@ -113,37 +156,5 @@ public class FeedActivity extends Activity {
 		FeedTask task = null;
 	
 	};
-	
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-		state = (InstanceState) getLastNonConfigurationInstance();
-		
-		if (state == null) {
-			state = new InstanceState();
-			state.task = new FeedTask(this);
-			state.task.execute(getIntent().getStringExtra(FEED_URL));
-		} else {
-			if (state.task != null) {
-				setFeed(state.feed);
-			}
-		}
-	}
-	
-	@Override
-	public Object onRetainNonConfigurationInstance() {
-		if (state.task != null) {
-			state.task.detach();
-		}
-		
-		return state;
-	
-	}
-	
-	private void setFeed(RSSFeed feed) {
-		state.feed = feed;
-		setListAdapter(new FeedAdapter(feed));
-	}
 	
 };
