@@ -17,7 +17,10 @@ import android.widget.TextView;
 
 public class FeedActivity extends Activity {
 	
+	private InstanceState state = null;
+	
 	private static class FeedTask extends AsyncTask<String, Void, RSSFeed> {
+		
 		private RSSReader reader = new RSSReader();
 		private Exception e = null;
 		private FeedActivity activity = null;
@@ -61,6 +64,7 @@ public class FeedActivity extends Activity {
 	};
 	
 	private class FeedAdapter extends BaseAdapter {
+		
 		RSSFeed feed = null;
 		
 		FeedAdapter(RSSFeed feed) {
@@ -96,6 +100,14 @@ public class FeedActivity extends Activity {
 		
 			return row;
 		}
-	}
+		
+	};
+	
+	private static class InstanceState {
+		
+		RSSFeed feed = null;
+		FeedTask task = null;
+	
+	};
 	
 }
