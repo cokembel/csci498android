@@ -2,6 +2,7 @@ package csci498.cokembel.lunchlist;
 
 import csci498.cokembel.lunshlist.R;
 import android.app.Activity;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class DetailForm extends Activity {
 	RestaurantHelper helper = null;
 	String restaurantId = null;
 	TextView location = null;
+	LocationManager locMgr = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,8 @@ public class DetailForm extends Activity {
 		types = (RadioGroup) findViewById(R.id.types);
 		feed = (EditText) findViewById(R.id.feed);
 		location = (TextView)findViewById(R.id.location);
+		
+		locMgr = (LocationManager)getSystemService(LOCATION_SERVICE);
 	}
 
 	private void load() {
