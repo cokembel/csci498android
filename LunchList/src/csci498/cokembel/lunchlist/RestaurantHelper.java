@@ -80,6 +80,14 @@ class RestaurantHelper extends SQLiteOpenHelper {
 		getWritableDatabase().update("restaurants", cv, "_ID=?", args);
 	}
 	
+	public double getLatitude(Cursor c) {
+		return c.getDouble(6);
+	}
+	
+	public double getLongitude(Cursor c) {
+		return c.getDouble(7);
+	}
+	
 	public String getName(Cursor c) {
 		return c.getString(1);
 	}
