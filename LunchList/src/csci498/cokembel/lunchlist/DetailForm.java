@@ -204,5 +204,13 @@ public class DetailForm extends Activity {
 		super.onPause();
 	}
 
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		if (restaurantId == null) {
+			menu.findItem(R.id.location).setEnabled(false);
+		}
+		
+		return super.onPrepareOptionsMenu(menu);
+	}
 
 }
