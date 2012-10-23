@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -55,8 +54,7 @@ public class DetailForm extends Activity {
 		notes = (EditText) findViewById(R.id.notes);
 		types = (RadioGroup) findViewById(R.id.types);
 		feed = (EditText) findViewById(R.id.feed);
-		Button save = (Button) findViewById(R.id.save);
-		save.setOnClickListener(onSave);
+		
 
 	}
 
@@ -136,10 +134,10 @@ public class DetailForm extends Activity {
 		return info != null;
 	}
 
-	private View.OnClickListener onSave = new View.OnClickListener() {
-		public void onClick(View v) {
+	private void save() {
+		if (name.getText().toString().length() > 0) {
 			String type = null;
-
+	
 			switch (types.getCheckedRadioButtonId()) {
 			case R.id.sit_down:
 				type = "sit_down";
@@ -151,6 +149,7 @@ public class DetailForm extends Activity {
 				type = "delivery";
 				break;
 			}
+			
 			if (restaurantId == null) {
 				helper.insert(name.getText().toString(), address.getText()
 						.toString(), type, notes.getText().toString(), feed.getText().toString());
@@ -158,8 +157,14 @@ public class DetailForm extends Activity {
 				helper.update(restaurantId, name.getText().toString(), address
 						.getText().toString(), type, notes.getText().toString(), feed.getText().toString());
 			}
-			finish();
 		}
-	};
+	}
+	
+	@Override
+	public void onPause() {
+		save();
+		super.onPause();
+	}
+
 
 }
