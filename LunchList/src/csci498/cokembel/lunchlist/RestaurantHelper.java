@@ -23,7 +23,13 @@ class RestaurantHelper extends SQLiteOpenHelper {
 	
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL("ALTER TABLE restaurants ADD COLUMN feed TEXT");
+		if (oldVersion < 2) {
+			db.execSQL("ALTER TABLE restaurants ADD COLUMN feed TEXT");
+		}
+		
+		if (oldVersion < 3) {
+			db.execSQL("ALTER TABLE restaurants ADD COLUMN lat REAL");
+		}
 	}
 	
 	public void insert(String name, String address, String type, String notes, String feed) {
