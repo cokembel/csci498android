@@ -70,6 +70,16 @@ class RestaurantHelper extends SQLiteOpenHelper {
 		return getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes, feed, lat, lon FROM restaurants ORDER BY "+orderBy,null);
 	}
 	
+	public void updateLocation(String id, double lat, double lon) {
+		ContentValues cv = new ContentValues();
+		String[] args = {id};
+		
+		cv.put("lat", lat);
+		cv.put("lon", lon);
+		
+		getWritableDatabase().update("restaurants", cv, "_ID=?", args);
+	}
+	
 	public String getName(Cursor c) {
 		return c.getString(1);
 	}
