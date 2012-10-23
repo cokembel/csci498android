@@ -10,5 +10,6 @@
     <string name="type">Type:</string>
     <string name="notes">Notes:</string>
     <string name="sort_description">Choose the order the list uses</string>
+    <string name="location_save_menu">Save Location</string>
 
 </resources>
