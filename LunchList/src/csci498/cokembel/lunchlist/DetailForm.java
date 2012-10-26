@@ -57,6 +57,8 @@ public class DetailForm extends Activity {
 		}
 	};
 	
+	double latitude = 0.0d;
+	double longitude = 0.0d;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -106,7 +108,10 @@ public class DetailForm extends Activity {
 			types.check(R.id.delivery);
 		}
 		
-		location.setText(String.valueOf(helper.getLatitude(c)) + ", " + String.valueOf(helper.getLongitude(c)));
+		latitude = helper.getLatitude(c);
+		longitude = helper.getLongitude(c);
+		
+		location.setText(String.valueOf(latitude) + ", " + String.valueOf(longitude));
 
 		c.close();
 
