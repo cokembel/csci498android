@@ -2,12 +2,15 @@ package csci498.cokembel.lunchlist;
 
 import csci498.cokembel.lunshlist.R;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.android.maps.GeoPoint;
+import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
+import com.google.android.maps.OverlayItem;
 
 public class RestaurantMap extends MapActivity {
 	
@@ -16,6 +19,31 @@ public class RestaurantMap extends MapActivity {
 	public static final String EXTRA_NAME = "csci498.cokembel.lunchlist.EXTRA_NAME";
 	
 	private MapView map = null;
+	
+	private class RestaurantOverlay extends ItemizedOverlay<OverlayItem> {
+		
+		private OverlayItem item= null;
+		
+		public RestaurantOverlay(Drawable marker, GeoPoint point, String name) {
+			super(marker);
+		
+			boundCenterBottom(marker);
+		
+			item = new OverlayItem(point, name, name);
+		
+			populate();
+		}
+
+		@Override
+		protected OverlayItem createItem(int i) {
+			return (item);
+		}
+
+		@Override
+		public int size() {
+			return 1;
+		}
+	};
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
