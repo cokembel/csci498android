@@ -61,6 +61,13 @@ public class RestaurantMap extends MapActivity {
 		map.getController().setCenter(status);
 		map.setBuiltInZoomControls(true);
 		
+		Drawable marker = getResources().getDrawable(R.drawable.marker);
+		
+		marker.setBounds(0, 0, marker.getIntrinsicWidth(), marker.getIntrinsicHeight());
+		
+		map.getOverlays()
+		   .add(new RestaurantOverlay(marker, status, getIntent().getStringExtra(EXTRA_NAME)));
+		
 	}
 
 	@Override
