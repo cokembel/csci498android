@@ -33,6 +33,12 @@ public class RestaurantMap extends MapActivity {
 		
 			populate();
 		}
+		
+		@Override
+		protected boolean onTap(int i) {
+			Toast.makeText(RestaurantMap.this, item.getSnippet(), Toast.LENGTH_SHORT).show();
+			return true;
+		}
 
 		@Override
 		protected OverlayItem createItem(int i) {
