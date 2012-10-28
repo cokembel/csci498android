@@ -66,7 +66,6 @@ public class DetailForm extends Activity {
 		setContentView(R.layout.detail_form);
 
 		initializingWidgets();
-		restaurantId = getIntent().getStringExtra(LunchList.ID_EXTRA);
 
 		if (restaurantId != null) {
 			load();
@@ -89,6 +88,7 @@ public class DetailForm extends Activity {
 		location = (TextView)findViewById(R.id.location);
 		
 		locMgr = (LocationManager)getSystemService(LOCATION_SERVICE);
+		restaurantId = getIntent().getStringExtra(LunchList.ID_EXTRA);
 	}
 
 	private void load() {
