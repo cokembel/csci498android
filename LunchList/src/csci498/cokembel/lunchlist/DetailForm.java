@@ -33,6 +33,9 @@ public class DetailForm extends Activity {
 	TextView location = null;
 	LocationManager locMgr = null;
 	
+	double latitude = 0.0d;
+	double longitude = 0.0d;
+	
 	LocationListener onLocationChange = new LocationListener() {
 	
 		public void onLocationChanged(Location fix) {
@@ -56,9 +59,7 @@ public class DetailForm extends Activity {
 			// not used
 		}
 	};
-	
-	double latitude = 0.0d;
-	double longitude = 0.0d;
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -74,8 +75,10 @@ public class DetailForm extends Activity {
 
 	@Override
 	public void onDestroy() {
-		super.onDestroy();
+		
 		helper.close();
+		locMgr.removeUpdates(onLocationChange);
+		super.onDestroy();
 	}
 
 	private void initializingWidgets() {
@@ -174,7 +177,7 @@ public class DetailForm extends Activity {
 			return true;
 		}
 		
-		return(super.onOptionsItemSelected(item));
+		return super.onOptionsItemSelected(item);
 	}
 	
 	private boolean isNetworkAvailable() {
@@ -213,7 +216,6 @@ public class DetailForm extends Activity {
 	@Override
 	public void onPause() {
 		save();
-		locMgr.removeUpdates(onLocationChange);
 		
 		super.onPause();
 	}
