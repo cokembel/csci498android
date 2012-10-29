@@ -1,12 +1,11 @@
 package csci498.cokembel.lunchlist;
 
-
 import csci498.cokembel.lunshlist.R;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.google.android.maps.*;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
