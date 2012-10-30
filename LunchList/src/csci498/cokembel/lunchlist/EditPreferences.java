@@ -25,7 +25,15 @@ public class EditPreferences extends PreferenceActivity {
 		super.onResume();
 		
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		prefs.registerOnSharedPreferenceChangeListener(onChange);
+	}
+	
+	
+	@Override
+	public void onPause() {
 		prefs.unregisterOnSharedPreferenceChangeListener(onChange);
+		
+		super.onPause();
 	}
 	
 	SharedPreferences.OnSharedPreferenceChangeListener onChange = new SharedPreferences.OnSharedPreferenceChangeListener() {
