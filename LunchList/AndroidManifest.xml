@@ -28,6 +28,7 @@
         <activity android:name="csci498.cokembel.lunchlist.EditPreferences"></activity>
         <activity android:name="csci498.cokembel.lunchlist.FeedActivity"></activity>
         <activity android:name="csci498.cokembel.lunchlist.RestaurantMap"></activity>
+        <activity android:name="csci498.cokembel.lunchlist.AlarmActivity"></activity>
         <service android:name="csci498.cokembel.lunchlist.FeedService"></service>
     	<receiver android:name=".OnBootReceiver"
     	    android:enabled="false">
@@ -35,6 +36,7 @@
     	        <action android:name="android.intent.action.BOOT_COMPLETED" />
     	    </intent-filter>
     	</receiver>
+    	<receiver android:name="csci498.cokembel.lunchlist.OnAlarmReceiver"></receiver>
     </application>
 
 </manifest>
