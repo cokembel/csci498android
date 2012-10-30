@@ -30,7 +30,7 @@
         <activity android:name="csci498.cokembel.lunchlist.RestaurantMap"></activity>
         <activity android:name="csci498.cokembel.lunchlist.AlarmActivity"></activity>
         <service android:name="csci498.cokembel.lunchlist.FeedService"></service>
-    	<receiver android:name=".OnBootReceiver"
+    	<receiver android:name="csci498.cokembel.lunchlist.OnBootReceiver"
     	    android:enabled="false">
     	    <intent-filter>
     	        <action android:name="android.intent.action.BOOT_COMPLETED" />

@@ -44,6 +44,7 @@ public class EditPreferences extends PreferenceActivity {
 				int flag = (enabled ?
 						PackageManager.COMPONENT_ENABLED_STATE_ENABLED :
 						PackageManager.COMPONENT_ENABLED_STATE_DISABLED);
+				
 				ComponentName component = new ComponentName(EditPreferences.this, OnBootReceiver.class);
 				
 				getPackageManager().setComponentEnabledSetting(component, flag, PackageManager.DONT_KILL_APP);

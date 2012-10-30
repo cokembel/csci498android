@@ -15,7 +15,6 @@ public class OnBootReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context ctxt, Intent intent) {
 		setAlarm(ctxt);
-		
 	}
 	
 	public static void setAlarm(Context ctxt) {
@@ -45,7 +44,7 @@ public class OnBootReceiver extends BroadcastReceiver {
 	public static PendingIntent getPendingIntent(Context ctxt) {
 		Intent i = new Intent(ctxt, OnAlarmReceiver.class);
 		
-		return PendingIntent.getBroadcast(ctxt, 0, i , 0);
+		return PendingIntent.getBroadcast(ctxt, 0, i, 0);
 	}
 
 }
