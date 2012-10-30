@@ -39,7 +39,7 @@ public class TimePreference extends DialogPreference{
 	}
 	
 	@Override
-	protected void onBindDialogView(view v) {
+	protected void onBindDialogView(View v) {
 		super.onBindDialogView(v);
 		
 		picker.setCurrentHour(lastHour);
