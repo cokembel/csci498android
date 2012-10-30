@@ -6,6 +6,7 @@
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
@@ -27,7 +28,13 @@
         <activity android:name="csci498.cokembel.lunchlist.EditPreferences"></activity>
         <activity android:name="csci498.cokembel.lunchlist.FeedActivity"></activity>
         <activity android:name="csci498.cokembel.lunchlist.RestaurantMap"></activity>
-        <service android:name="csci498.cokembel.lunchlist.FeedService"></service>"
+        <service android:name="csci498.cokembel.lunchlist.FeedService"></service>
+    	<receiver android:name=".OnBootReceiver"
+    	    android:enabled="false">
+    	    <intent-filter>
+    	        <action android:name="android.intent.action.BOOT_COMPLETED" />
+    	    </intent-filter>
+    	</receiver>
     </application>
 
 </manifest>
