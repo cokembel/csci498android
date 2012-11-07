@@ -1,21 +1,15 @@
 package csci498.cokembel.lunchlist;
 
-import csci498.cokembel.lunshlist.R;
-
 import org.mcsoxford.rss.RSSItem;
-import org.mcsoxford.rss.RSSReader;
 import org.mcsoxford.rss.RSSFeed;
 
-import android.app.Activity;
 import android.app.ListActivity;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Messenger;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
