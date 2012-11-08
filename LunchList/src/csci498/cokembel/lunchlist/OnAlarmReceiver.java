@@ -20,7 +20,7 @@ public class OnAlarmReceiver extends BroadcastReceiver {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctxt);
 		boolean useNotification = prefs.getBoolean("use_notification", true);
 		
-		if(useNotification) {
+		if (useNotification) {
 			NotificationManager mgr = (NotificationManager)ctxt.getSystemService(Context.NOTIFICATION_SERVICE);
 			Notification note = new Notification(R.drawable.stat_notify_chat, "It's time for lunch!", System.currentTimeMillis());
 			
