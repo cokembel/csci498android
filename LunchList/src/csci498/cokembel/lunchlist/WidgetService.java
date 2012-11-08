@@ -19,7 +19,7 @@ public class WidgetService extends IntentService{
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		ComponentName me = new ComponentName(this, AppWidget.class);
-		RemoteViews updateViews = new RemoteViews("csci498.cokembel.lunchlist", R.layout.widget);
+		RemoteViews updateViews = new RemoteViews("csci498.cokembel.lunshlist", R.layout.widget);
 		RestaurantHelper helper = new RestaurantHelper(this);
 		AppWidgetManager mgr = AppWidgetManager.getInstance(this);
 		
@@ -40,10 +40,11 @@ public class WidgetService extends IntentService{
 				
 				c = helper
 						.getReadableDatabase()
-						.rawQuery("SELECT_ID, name FROM restaurants LIMIT 1 OFFSET ?", args);
+						.rawQuery("SELECT _ID, name FROM restaurants LIMIT 1 OFFSET ?", args);
 				
 				c.moveToFirst();
 				updateViews.setTextViewText(R.id.name, c.getString(1));
+				
 				Intent i = new Intent(this, DetailForm.class);
 				
 				i.putExtra(LunchList.ID_EXTRA, c.getString(0));
@@ -51,6 +52,7 @@ public class WidgetService extends IntentService{
 				PendingIntent pi = PendingIntent.getActivity(this, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
 				
 				updateViews.setOnClickPendingIntent(R.id.name, pi);
+				updateViews.setTextViewText(R.id.title, "Yo Yo Yo ");
 				
 				c.close();
 			} else {
@@ -67,7 +69,4 @@ public class WidgetService extends IntentService{
 		mgr.updateAppWidget(me, updateViews);
 	}
 	
-	
-	
-
 }
