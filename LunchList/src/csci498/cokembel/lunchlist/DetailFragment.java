@@ -105,12 +105,12 @@ public class DetailFragment extends Fragment {
 	}
 
 	private void initializingWidgets() {
-		name = (EditText) findViewById(R.id.name);
-		address = (EditText) findViewById(R.id.addr);
-		notes = (EditText) findViewById(R.id.notes);
-		types = (RadioGroup) findViewById(R.id.types);
-		feed = (EditText) findViewById(R.id.feed);
-		location = (TextView)findViewById(R.id.location);
+		name = (EditText) getView().findViewById(R.id.name);
+		address = (EditText) getView().findViewById(R.id.addr);
+		notes = (EditText) getView().findViewById(R.id.notes);
+		types = (RadioGroup) getView().findViewById(R.id.types);
+		feed = (EditText) getView().findViewById(R.id.feed);
+		location = (TextView) getView().findViewById(R.id.location);
 	}
 
 	private void load() {
@@ -208,7 +208,6 @@ public class DetailFragment extends Fragment {
 		}
 	}
 
-
 	@Override
 	public void onPrepareOptionsMenu(Menu menu) {
 		if (restaurantId == null) {
@@ -217,4 +216,4 @@ public class DetailFragment extends Fragment {
 		}
 	}
 
-}
+};
