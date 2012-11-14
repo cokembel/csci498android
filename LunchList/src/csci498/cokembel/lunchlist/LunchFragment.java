@@ -39,12 +39,11 @@ public class LunchFragment extends ListFragment {
 
 	@Override
 	public void onListItemClick(ListView list, View view, int position, long id) {
-		Intent i=new Intent(getActivity(), DetailForm.class);
-		i.putExtra(ID_EXTRA, String.valueOf(id));
-		startActivity(i);
+		if (listener != null) {
+			listener.onRestaurantSelected(id);
+		}
 	}
 	
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -64,7 +63,7 @@ public class LunchFragment extends ListFragment {
     }
 
 	@Override
-	public void onPause(){
+	public void onPause() {
 		restaurantHelper.close();
 		
 		super.onPause();
@@ -164,7 +163,7 @@ public class LunchFragment extends ListFragment {
 		void onRestaurantSelected(long id);
 	}
 	
-	public void setOnRestaurantListener(OnRestaurantListener listener){
+	public void setOnRestaurantListener(OnRestaurantListener listener) {
 		this.listener = listener;
 	}
 };
