@@ -3,6 +3,7 @@
     package="csci498.cokembel.lunshlist"
     android:versionCode="1"
     android:versionName="1.0" >
+    
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -11,6 +12,7 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
     <supports-screens android:smallScreens="false" android:largeScreens="true" android:normalScreens="true"/>
+
     <application
         android:icon="@drawable/restaurant_icon"
         android:label="@string/app_name"
