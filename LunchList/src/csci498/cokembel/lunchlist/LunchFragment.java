@@ -19,22 +19,23 @@ import android.database.Cursor;
 import android.preference.PreferenceManager;
 
 
-@SuppressWarnings("deprecation")
 public class LunchFragment extends ListFragment {
 	
 	public final static String ID_EXTRA = "csci498.cokembel.lunchlist._ID";
 	
-	Cursor model = null;
-	RestaurantAdapter adapter = null;
-	RestaurantHelper restaurantHelper = null;
+	private Cursor model = null;
+	private RestaurantAdapter adapter = null;
+	private RestaurantHelper restaurantHelper = null;
 	
-	RadioButton sit_down, take_out, delivery;
-	EditText name = null;
-	EditText address = null;
-	EditText notes = null;
-	String restaurantType = null;
-	RadioGroup typesRadioGroup;
-	SharedPreferences prefs;
+	private RadioButton sit_down, take_out, delivery;
+	private EditText name = null;
+	private EditText address = null;
+	private EditText notes = null;
+	private String restaurantType = null;
+	private RadioGroup typesRadioGroup;
+	private SharedPreferences prefs;
+	
+	private OnRestaurantListener listener;
 
 	@Override
 	public void onListItemClick(ListView list, View view, int position, long id) {
@@ -159,6 +160,13 @@ public class LunchFragment extends ListFragment {
 	   	
 	};
    
+	public interface OnRestaurantListener {
+		void onRestaurantSelected(long id);
+	}
+	
+	public void setOnRestaurantListener(OnRestaurantListener listener){
+		this.listener = listener;
+	}
 };
 
 
