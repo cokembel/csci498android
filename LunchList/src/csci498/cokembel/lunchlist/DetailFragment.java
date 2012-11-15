@@ -90,16 +90,12 @@ public class DetailFragment extends Fragment {
 		}
 	}
 	
-	@Override
-	public void onResume() {
-		super.onResume();
-		
-		helper = new RestaurantHelper(getActivity());
-		restaurantId = getActivity().getIntent().getStringExtra(LunchList.ID_EXTRA);
-		
-		if (restaurantId != null) {
-			load();
+	private RestaurantHelper getHelper() {
+		if (helper == null) {
+			helper = new RestaurantHelper(getActivity());
 		}
+		
+		return helper;
 	}
 
 	@Override
