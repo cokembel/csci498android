@@ -39,6 +39,16 @@ public class DetailFragment extends Fragment {
 	
 	private static final String ARG_REST_ID = "csci498.cokembel.lunchlist.ARG_REST_ID";
 	
+	public static DetailFragment newInstance(long id) {
+		DetailFragment result = new DetailFragment();
+		Bundle args = new Bundle();
+		
+		args.putString(ARG_REST_ID, String.valueOf(id));
+		result.setArguments(args);
+		
+		return result;
+	}
+	
 	LocationListener onLocationChange = new LocationListener() {
 	
 		public void onLocationChanged(Location fix) {
@@ -227,13 +237,4 @@ public class DetailFragment extends Fragment {
 		}
 	}
 	
-	public static DetailFragment newInstance(long id) {
-		DetailFragment result = new DetailFragment();
-		Bundle args = new Bundle();
-		
-		args.putString(ARG_REST_ID, String.valueOf(id));
-		result.setArguments(args);
-		
-		return result;
-	}
 };
