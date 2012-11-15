@@ -83,17 +83,8 @@ public class LunchFragment extends ListFragment {
 		   startActivity(new Intent(getActivity(), EditPreferences.class));
 		   return true;
 	   }
-	   return(super.onOptionsItemSelected(item));
+	   return super.onOptionsItemSelected(item);
     }
-   
-    private SharedPreferences.OnSharedPreferenceChangeListener prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-	   public void onSharedPreferenceChanged(SharedPreferences sharedPrefs, String key) {
-		   if (key.equals("sort_order")) {
-			   initList();
-		   }
-	   }
-	   
-    };
    
     private void initList() {
 	   if (model != null) {
@@ -104,6 +95,15 @@ public class LunchFragment extends ListFragment {
 	   adapter = new RestaurantAdapter(model);
 	   setListAdapter(adapter);
     }
+    
+    private SharedPreferences.OnSharedPreferenceChangeListener prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+ 	   public void onSharedPreferenceChanged(SharedPreferences sharedPrefs, String key) {
+ 		   if (key.equals("sort_order")) {
+ 			   initList();
+ 		   }
+ 	   }
+ 	   
+     };
        
     public static class RestaurantHolder {
     	
@@ -112,7 +112,6 @@ public class LunchFragment extends ListFragment {
     	private ImageView icon = null;
     	
     	RestaurantHolder(View row) {
-    		
     		name = (TextView)row.findViewById(R.id.title);
     		address =(TextView)row.findViewById(R.id.address);
     		icon = (ImageView)row.findViewById(R.id.icon);
@@ -139,7 +138,7 @@ public class LunchFragment extends ListFragment {
     public class RestaurantAdapter extends CursorAdapter {
 	   	
 	   	RestaurantAdapter(Cursor c) {
-	   	super(getActivity(), c);
+	   		super(getActivity(), c);
 	   	}
 	   	
 	   	@Override
@@ -153,7 +152,9 @@ public class LunchFragment extends ListFragment {
 		    	LayoutInflater inflater = getActivity().getLayoutInflater();
 		    	View row=inflater.inflate(R.layout.row, parent, false);
 		    	RestaurantHolder holder = new RestaurantHolder(row);
+		    	
 		    	row.setTag(holder);
+		    	
 		    	return(row);
 	   	}
 	   	
