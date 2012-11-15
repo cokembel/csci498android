@@ -37,6 +37,8 @@ public class DetailFragment extends Fragment {
 	private double latitude = 0.0d;
 	private double longitude = 0.0d;
 	
+	private static final String ARG_REST_ID = "csci498.cokembel.lunchlist.ARG_REST_ID";
+	
 	LocationListener onLocationChange = new LocationListener() {
 	
 		public void onLocationChanged(Location fix) {
@@ -80,6 +82,12 @@ public class DetailFragment extends Fragment {
 		locMgr = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
 		
 		initializingWidgets();
+		
+		Bundle args = getArguments();
+		
+		if (args != null) {
+			loadRestaurant(args.getString(ARG_REST_ID));
+		}
 	}
 	
 	@Override
@@ -215,4 +223,21 @@ public class DetailFragment extends Fragment {
 		}
 	}
 
+	public void loadRestaurant(String restaurantId) {
+		this.restaurantId = restaurantId;
+		
+		if (restaurantId != null) {
+			load();
+		}
+	}
+	
+	public static DetailFragment newInstance(long id) {
+		DetailFragment result = new DetailFragment();
+		Bundle args = new Bundle();
+		
+		args.putString(ARG_REST_ID, String.valueOf(id));
+		result.setArguments(args);
+		
+		return result;
+	}
 };
