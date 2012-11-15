@@ -10,6 +10,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,7 +22,7 @@ import android.widget.Toast;
 import android.util.Log;
 import android.view.MenuItem;
 
-public class DetailForm extends Activity {
+public class DetailForm extends FragmentActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
