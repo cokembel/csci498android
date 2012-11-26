@@ -22,7 +22,7 @@ public class RestaurantMap extends MapActivity {
 	
 	private class RestaurantOverlay extends ItemizedOverlay<OverlayItem> {
 		
-		private OverlayItem item= null;
+		private OverlayItem item = null;
 		
 		public RestaurantOverlay(Drawable marker, GeoPoint point, String name) {
 			super(marker);
@@ -73,7 +73,6 @@ public class RestaurantMap extends MapActivity {
 		
 		map.getOverlays()
 		   .add(new RestaurantOverlay(marker, status, getIntent().getStringExtra(EXTRA_NAME)));
-		
 	}
 
 	@Override

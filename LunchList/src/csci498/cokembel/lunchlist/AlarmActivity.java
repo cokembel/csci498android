@@ -11,7 +11,7 @@ import csci498.cokembel.lunshlist.R;
 
 public class AlarmActivity extends Activity implements MediaPlayer.OnPreparedListener {
 	
-	MediaPlayer player = new MediaPlayer();
+	private MediaPlayer player = new MediaPlayer();
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

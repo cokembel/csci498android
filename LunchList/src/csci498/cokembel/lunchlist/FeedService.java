@@ -14,7 +14,6 @@ import android.os.Message;
 import android.os.Messenger;
 
 
-
 public class FeedService extends IntentService {
 	
 	public static final String EXTRA_URL = "csci498.cokembel.lunchlist.EXTRA_URL";

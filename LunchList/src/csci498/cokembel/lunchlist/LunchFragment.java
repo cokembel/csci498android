@@ -169,7 +169,8 @@ public class LunchFragment extends ListFragment {
 	public void setOnRestaurantListener(OnRestaurantListener listener) {
 		this.listener = listener;
 	}
-};
+	
+}
 
 
 

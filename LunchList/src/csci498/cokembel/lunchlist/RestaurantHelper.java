@@ -35,7 +35,7 @@ class RestaurantHelper extends SQLiteOpenHelper {
 	
 	public void insert(String name, String address, String type, String notes, String feed) {
 		
-		ContentValues cv=new ContentValues();
+		ContentValues cv = new ContentValues();
 		
 		cv.put("name", name);
 		cv.put("address", address);

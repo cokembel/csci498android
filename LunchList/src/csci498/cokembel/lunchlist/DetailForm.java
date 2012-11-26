@@ -44,4 +44,4 @@ public class DetailForm extends FragmentActivity {
 			}
 		}
 	}
-};
+}
