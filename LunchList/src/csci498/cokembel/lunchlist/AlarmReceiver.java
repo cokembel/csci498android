@@ -11,7 +11,7 @@ import android.preference.PreferenceManager;
 import csci498.cokembel.lunshlist.R;
 
 
-public class OnAlarmReceiver extends BroadcastReceiver {
+public class AlarmReceiver extends BroadcastReceiver {
 	
 	private static final int NOTIFY_ME_ID = 1337;
 
