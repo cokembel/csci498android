@@ -9,9 +9,12 @@
     <string name="address">Address:</string>
     <string name="type">Type:</string>
     <string name="notes">Notes:</string>
-    <string name="sort_description">Choose the order the list uses</string>
     <string name="location_save_menu">Save Location</string>
     <string name="lunch_time">It\'s time for lunch!</string>
     <string name="empty">No restaurants!</string>
-
+    <string name="sort_description">Choose the order the list uses</string>
+    <string name="alarm_time_description">"Set your desired time for the lunch alarm</string>
+    <string name="notification_description">Check if you want a status bar icon at lunchtime, or uncheck for a full-screen notice</string>
+    <string name="ringtone_description">Indicate the ringtone to play when it is lunchtime</string>
+    
 </resources>
